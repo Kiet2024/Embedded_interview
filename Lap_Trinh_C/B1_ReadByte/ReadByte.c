@@ -3,12 +3,10 @@
 
 void readByte(uint8_t byte){
     uint8_t temp = 0b10000000;
-    uint8_t result;
     printf("0b");
     for (int i = 0; i < 8; i++)
     {
-        result = (byte & temp)?1:0;
-        printf("%d",result);
+        printf("%d",(byte & temp)?1:0);
         byte = byte << 1; 
     }
 }
