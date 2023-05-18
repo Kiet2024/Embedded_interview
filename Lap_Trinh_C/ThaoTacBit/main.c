@@ -42,7 +42,7 @@ void pinLow(s_pins pin){
 }
 
 void digitalWrite(s_pins pin, s_status status){
-    if (status == 1){
+    if (status == HIGH){
         PORTC = PORTC | (0b10000000 >> pin);
     }
     else{
