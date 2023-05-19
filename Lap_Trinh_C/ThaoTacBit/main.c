@@ -6,11 +6,12 @@ uint8_t PORTB = 0b11111111;
 uint8_t PORTC = 0b10101011;
 
 void readByte(uint8_t byte){
-    uint8_t temp = 0b10000000; 
+    uint8_t temp = 0b10000000;
     printf("0b");
     for (int i = 0; i < 8; i++)
     {
-        printf("%d",(byte & temp)?1:0); 
+        // byte & temp != 0 (biểu thức đúng thì trả về 1, ngược lại 0)
+        printf("%d",((byte & temp) != 0)?1:0); 
         byte = byte << 1; 
     }
     printf("\n");
@@ -32,7 +33,8 @@ typedef enum{
     HIGH
 }s_status;
 
-
+// Lưu ý : trong bài này cho bit trọng số thấp nhất (bit 0) tính từ trái sang trái
+// Thực tế bit 0 tính từ phải sang trái.
 void pinHigh(s_pins pin){
     PORTA = PORTA | (0b10000000 >> pin);
 }
