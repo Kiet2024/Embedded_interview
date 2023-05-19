@@ -1,4 +1,7 @@
-
+# Compiler
+Compiler giống như 1 phần mềm dùng để chuyển ngôn ngữ bậc cao sang ngôn ngữ máy(ngôn ngữ bậc thấp), đối với một ngôn ngữ lập trình (c/c++, python,java,...) thì có nhiều compiler.
+Để tạo file *.i từ file *.c thì gõ "gcc -E *.c -o *.i".
+Quá trình tiền xử lý (Preprocessor) xảy ra nó sẽ thay thế những đoạn chương trình Macro định nghĩa vào những đoạn chương trình đang gọi Macro, những phần command sẽ được bỏ qua.
 # Các toán tử logic
  ## Toán tử AND
  <img width="173" alt="image" src="https://github.com/Kiet2024/Embedded_interview/assets/133784431/131b91c7-7404-42a1-89d4-00713f196a51">
