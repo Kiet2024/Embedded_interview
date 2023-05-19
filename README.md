@@ -3,7 +3,7 @@ Compiler giống như 1 phần mềm dùng để chuyển ngôn ngữ bậc cao 
 ![image](https://github.com/Kiet2024/Embedded_interview/assets/133784431/21423361-d502-41ca-9a00-9ac64500703c)
 
 
-Để tạo file *.i từ file *.c thì gõ "gcc -E *.c -o *.i".(*. là tên file)
+Để tạo file *.i từ file *.c thì gõ "gcc -E *.c -o *.i".
 
 Quá trình tiền xử lý (Preprocessor) xảy ra nó sẽ thay thế những đoạn chương trình Macro định nghĩa vào những đoạn chương trình đang gọi Macro, những phần command sẽ được bỏ qua.
 
