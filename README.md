@@ -5,11 +5,11 @@ Compiler giống như 1 phần mềm dùng để chuyển ngôn ngữ bậc cao 
 
 Để tạo file *.i từ file *.c thì gõ "gcc -E *.c -o *.i".( *.c là tên file .c)
 
-Quá trình tiền xử lý (Preprocessor) xảy ra nó sẽ thay thế những đoạn chương trình Macro định nghĩa vào những đoạn chương trình đang gọi Macro, những phần command sẽ được bỏ qua.
+Quá trình `tiền xử lý (Preprocessor)` xảy ra nó sẽ thay thế những đoạn chương trình Macro định nghĩa vào những đoạn chương trình đang gọi Macro, những phần command sẽ được bỏ qua.
 
-Để tạo file Assembly code thì gõ "gcc *.i -S -o *.s".
+Để tạo file `Assembly` code thì gõ "gcc *.i -S -o *.s".
 
-Quá trình linker sẽ sắp xếp các object files + libraries vào file *.exe .
+Quá trình `linker` sẽ sắp xếp các object files + libraries vào file *.exe .
 
 Bản chất file *.exe giống như file zip hay rar.
 # Các toán tử logic
@@ -40,7 +40,7 @@ typedef uint8_t u8;
 u8 x = 10; // u8 bản chất nó là kiểu uint8_t
  ```
  # Tính size của Struct
-## Số byte cần quét trong 1 lần sẽ dựa trên byte lớn nhất trong struct
+Số byte cần quét trong 1 lần sẽ dựa trên byte lớn nhất trong struct
 
 ### Ví dụ 1:
 ```
