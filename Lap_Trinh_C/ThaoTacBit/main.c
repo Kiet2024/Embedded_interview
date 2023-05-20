@@ -33,7 +33,7 @@ typedef enum{
     HIGH
 }s_status;
 
-// Lưu ý : trong bài này cho bit trọng số thấp nhất (bit 0) tính từ trái sang trái
+// Lưu ý : trong bài này cho bit trọng số thấp nhất (bit 0) tính từ trái sang phải
 // Thực tế bit 0 tính từ phải sang trái.
 void pinHigh(s_pins pin){
     PORTA = PORTA | (0b10000000 >> pin);
