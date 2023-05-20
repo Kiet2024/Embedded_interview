@@ -1,5 +1,5 @@
 # Compiler
-Compiler giống như 1 phần mềm dùng để chuyển ngôn ngữ bậc cao sang ngôn ngữ máy(ngôn ngữ bậc thấp), đối với một ngôn ngữ lập trình (c/c++,python,java,...) thì có nhiều compiler.
+Compiler giống như 1 phần mềm dùng để chuyển ngôn ngữ bậc cao sang ngôn ngữ máy(ngôn ngữ bậc thấp), đối với một ngôn ngữ lập trình (c/c++, python, java,...) thì có nhiều compiler.
 ![image](https://github.com/Kiet2024/Embedded_interview/assets/133784431/21423361-d502-41ca-9a00-9ac64500703c)
 
 
@@ -42,7 +42,7 @@ u8 x = 10; // u8 bản chất nó là kiểu uint8_t
  # Tính size của Struct
 ## Số byte cần quét trong 1 lần sẽ dựa trên byte lớn nhất trong struct
 
-## Ví dụ 1:
+### Ví dụ 1:
 ```
 struct typeDate
 {
@@ -53,24 +53,49 @@ struct typeDate
     uint32_t arr4[1]; // 4 byte
 };
 ```
-Cách tính số size trong stuct của ví dụ 1 :
+Cách tính số size :
 
 uint8_t có size 1 byte => arr1[10] cần 1*10 = 10 byte để lưu, mà 1 lần quét là 8 byte (byte cao nhất trong struct) 
 
-=> arr1[10] = 10 byte + 6 byte dư = 10 byte (cần 2 lần quét)
+=> arr1[10] = 10 byte + **6 byte dư** = 10 byte (cần 2 lần quét)
 
 uint16_t có size 2 byte => arr2[7] cần 2*7 = 14 byte để lưu, mà ở trên còn dư 6 byte, nên lúc này cần 1 lần quét là đủ 
 
-=> arr2[7] = 6 byte (byte dư ở arr1) + 8 byte = 14 byte.
+=> arr2[7] = **6 byte (byte dư ở arr1)** + 8 byte = 14 byte.
 
 uint64_t có size 8 byte => arr3[5] cần 8*5 = 40 byte để lưu 
 
 => arr3[5] = 40byte ( 5 lần quét).
 
-uint32_t có size 4 byte => arr3[1] cần 4*1 = 4 byte lưu, nên chỉ cần 1 lần quét
+uint32_t có size 4 byte => arr3[1] cần 4*1 = 4 byte để lưu, nên chỉ cần 1 lần quét
 
 =>  arr3[1] = 4 byte + 4 byte dư = 8 byte
 
 ==> tổng size = 10 byte + 14 byte + 40 byte + 8 byte = 72 byte
 
-## Ví dụ 2:
+### Ví dụ 2:
+```
+struct typeDate
+{
+  // Số byte cần quét trong 1 lần = 4 byte
+    uint8_t arr1[11]; // 1 byte
+    uint32_t arr2[4]; // 4 byte
+    uint16_t arr3[7]; // 2 byte
+};
+```
+Cách tính số size
+
+uint8_t có size 1 byte => arr1[11] cần 1*11 = 11 byte để lưu, mà 1 lần quét là 4 byte (byte cao nhất trong struct) 
+
+=> arr1[11] = 11 byte + **1 byte dư** = 12 byte (cần 3 lần quét)
+
+uint32_t có size 4 byte => arr2[4] cần 4*4 = 16 byte để lưu 
+
+=>  arr2[4] = 16 byte  (cần 4 lần quét)
+
+uint16_t có size 2 byte => arr3[7] cần 2*7 = 14 byte để lưu
+
+=> arr2[7] = 14 byte + 2 byte dư = 16 byte (cần 4 lần quét)
+
+==> tổng size = 12 byte + 16 byte + 16 byte = 44 byte
+
