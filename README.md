@@ -33,12 +33,12 @@ Dịch trái (<<) 4 bit là bỏ đi 4 bit bên trái(ở đầu) và thêm 4 bi
 <img width="357" alt="image" src="https://github.com/Kiet2024/Embedded_interview/assets/133784431/085599a0-6a96-4d58-b47a-507eb1705ee4">
 
 Dịch phải(>>) 1 bit là bỏ đi 1 bit bên phải(ở cuối) và thêm 1 bit 0 vào bên trái(ở đầu)
-## Xét bit lên 1
-```bit |= (1 << n) //(n là vị trí bit)```
+## Xét 1 bit lên 1
+```bit |= (1 << n); //(n là vị trí bit)```
 ## Xét 1 bit xuống 0
-```bit &= ~(1 << n)```
+```bit &= ~(1 << n);```
 ## Đảo 1 bit 
-```bit ^= (1 << n)```
+```bit ^= (1 << n);```
 ## Kiểm tra 1 biết là 0 hay 1
 ``` 
 // bit & (1 << n)
@@ -52,8 +52,27 @@ typedef uint8_t u8;
 u8 x = 10; // u8 bản chất nó là kiểu uint8_t
  ```
  # Tính size của Struct
-Số byte cần quét trong 1 lần sẽ dựa trên byte lớn nhất trong struct
+ ```
+ // Chương trình tính size của  1 struct
+#include <stdio.h>
+#include <stdint.h>
 
+struct typeDate
+{
+    uint8_t arr1[10]; // 1 byte
+    uint16_t arr2[7]; // 2 byte
+    uint64_t arr3[5]; // 8 byte
+    uint32_t arr4[1]; // 4 byte
+};
+
+int main ()
+{
+    printf("Size: %lu", sizeof(struct typeDate)); // result = 72 byte
+    return 0;
+}
+ ```
+ 
+Số byte cần quét trong 1 lần sẽ dựa trên byte lớn nhất trong struct
 ### Ví dụ 1:
 ```
 struct typeDate
