@@ -12,7 +12,7 @@ Quá trình `tiền xử lý (Preprocessor)` xảy ra nó sẽ thay thế nhữn
 Quá trình `linker` sẽ sắp xếp các object files + libraries vào file *.exe .
 
 Bản chất file *.exe giống như file zip hay rar.
-# Các toán tử Bitwise logic
+# Các toán tử Bitwise
  ## Toán tử AND
  <img width="173" alt="image" src="https://github.com/Kiet2024/Embedded_interview/assets/133784431/131b91c7-7404-42a1-89d4-00713f196a51">
 
@@ -33,6 +33,14 @@ Dịch trái (<<) 4 bit là bỏ đi 4 bit bên trái(ở đầu) và thêm 4 bi
 <img width="357" alt="image" src="https://github.com/Kiet2024/Embedded_interview/assets/133784431/085599a0-6a96-4d58-b47a-507eb1705ee4">
 
 Dịch phải(>>) 1 bit là bỏ đi 1 bit bên phải(ở cuối) và thêm 1 bit 0 vào bên trái(ở đầu)
+## Xét bit lên 1
+```bit |= (1 << n) //(n là vị trí bit)```
+## Xét 1 bit xuống 0
+```bit &= ~(1 << n)```
+## Đảo 1 bit 
+```bit ^= (1 << n)```
+## Kiểm tra 1 biết là 0  hay 1
+bit & (1 << n) 
 # Typedef
 Typedef được sử dụng để tạo tên mới cho kiểu dữ liệu. 
 ```
