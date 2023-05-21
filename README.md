@@ -41,8 +41,9 @@ Dịch phải(>>) 1 bit là bỏ đi 1 bit bên phải(ở cuối) và thêm 1 b
 ```bit ^= (1 << n)```
 ## Kiểm tra 1 biết là 0 hay 1
 ``` 
-	int bit = 5; // 0101
-	printf("%s",(((bit & (1<<2)) !=0)?"true":"false"));
+// bit & (1 << n)
+int bit = 5; // 0101
+printf("%s",(((bit & (1<<2)) !=0)?"true":"false"));
  ```
 # Typedef
 Typedef được sử dụng để tạo tên mới cho kiểu dữ liệu. 
