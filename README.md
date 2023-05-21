@@ -12,7 +12,7 @@ Quá trình `tiền xử lý (Preprocessor)` xảy ra nó sẽ thay thế nhữn
 Quá trình `linker` sẽ sắp xếp các object files + libraries vào file *.exe .
 
 Bản chất file *.exe giống như file zip hay rar.
-# Các toán tử logic
+# Các toán tử Bitwise logic
  ## Toán tử AND
  <img width="173" alt="image" src="https://github.com/Kiet2024/Embedded_interview/assets/133784431/131b91c7-7404-42a1-89d4-00713f196a51">
 
