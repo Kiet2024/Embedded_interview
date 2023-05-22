@@ -72,12 +72,19 @@ int main (){
 
 - Sẽ được giải phóng khi ra khỏi block code/hàm.
 ```
-int test(int a, int b){
-  int c;
+// int a, int b là input parameter
+int sum(int a, int b){
+  int c; // biến cục bộ ở phân vùng stack
   c = a + b;
   return c;
 }
 ```
+**Phân vùng Heap:**
+- Quyền truy cập là read-write.
+
+- Được sử dụng để cấp phát bộ nhớ động như: Malloc, Calloc,…
+
+- Sẽ được giải phóng khi gọi hàm free,…
 # Các toán tử Bitwise
  ## Toán tử AND
  <img width="173" alt="image" src="https://github.com/Kiet2024/Embedded_interview/assets/133784431/131b91c7-7404-42a1-89d4-00713f196a51">
