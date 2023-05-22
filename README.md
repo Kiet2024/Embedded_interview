@@ -178,7 +178,7 @@ printf("%s",(((bit & (1<<2)) !=0)?"true":"false"));
 </details>   
  
 <details>
-<summary>Typedef</summary>
+<summary>TYPEDEF</summary>
     
 Typedef được sử dụng để tạo tên mới cho kiểu dữ liệu. 
 ```
