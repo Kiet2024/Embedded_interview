@@ -1,8 +1,6 @@
 <details>
 
-<summary>Compiler</summary>
-
-# Compiler
+<summary>COMPILER</summary>
 Compiler giống như 1 phần mềm dùng để chuyển ngôn ngữ bậc cao sang ngôn ngữ máy, đối với một ngôn ngữ lập trình (c/c++, python, java,...) thì có nhiều compiler.
     
 ![image](https://github.com/Kiet2024/Embedded_interview/assets/133784431/21423361-d502-41ca-9a00-9ac64500703c)
@@ -19,10 +17,11 @@ Bản chất file *.exe giống như file zip hay rar.
     
 </details>
 
-# Phân vùng nhớ
+<details>
+<summary>PHÂN VÙNG NHỚ</summary>
 <img width="169" alt="image" src="https://github.com/Kiet2024/Embedded_interview/assets/133784431/7b238944-eb43-4d35-a0dd-2e94ad70a421">
 
-**Phân vùng Text:**
+## Phân vùng Text:
 - Quyền truy cập chỉ Read và nó chứa lệnh để thực thi nên tránh sửa đổi instruction.
 
 - Chứa khai báo hằng số trong chương trình (.rodata)
@@ -31,7 +30,7 @@ Bản chất file *.exe giống như file zip hay rar.
 const int a = 9;
 char *arr = "Hello";
 ```
-**Phân vùng Data:**
+## Phân vùng Data:
 - Quyền truy cập là read-write.
 
 - Chứa biến toàn cục or biến static với giá trị khởi tạo khác không.
@@ -56,7 +55,7 @@ int main (){
  return 0;
  // Result: test = 35, main = 50
 ```
-**Phân vùng BSS:**
+## Phân vùng BSS:
 - Quyền truy cập là read-write.
 
 - Chứa biến toàn cục or biến static với giá trị khởi tạo bằng không or không khởi tạo.
@@ -71,7 +70,7 @@ void test(){
 int main (){
 }
 ```
-**Phân vùng Stack:**
+## Phân vùng Stack:
 - Quyền truy cập là read-write.
 
 - Được sử dụng cấp phát cho biến local, input parameter của hàm,…
@@ -85,7 +84,7 @@ int sum(int a, int b){
   return c;
 }
 ```
-**Phân vùng Heap:**
+## Phân vùng Heap:
 - Quyền truy cập là read-write.
 
 - Được sử dụng để cấp phát bộ nhớ động như: Malloc, Calloc,…
@@ -134,7 +133,12 @@ Dia chi arr: 00AD2F20
 Dia chi arr: 00AD2F20
 */
 ```
-# Các toán tử Bitwise
+    
+</details>
+    
+<details>
+<summary>TOÁN TỬ BITWISE</summary>
+    
  ## Toán tử AND
  <img width="173" alt="image" src="https://github.com/Kiet2024/Embedded_interview/assets/133784431/131b91c7-7404-42a1-89d4-00713f196a51">
 
@@ -146,8 +150,12 @@ Dia chi arr: 00AD2F20
 
  ## Toán tử XOR
  <img width="175" alt="image" src="https://github.com/Kiet2024/Embedded_interview/assets/133784431/28c77307-f094-4afa-b52e-925be353be09">
- 
-# Thao tác Bit
+    
+</details>
+
+<details>
+<summary>THAO TÁC BIT</summary>
+
 <img width="355" alt="image" src="https://github.com/Kiet2024/Embedded_interview/assets/133784431/02e222c1-e668-4939-a6ea-dd05e7eb746e">
 
 Dịch trái (<<) 4 bit là bỏ đi 4 bit bên trái(ở đầu) và thêm 4 bit 0 vào bên phải(ở cuối)
@@ -167,13 +175,23 @@ Dịch phải(>>) 1 bit là bỏ đi 1 bit bên phải(ở cuối) và thêm 1 b
 int bit = 5; // 0101
 printf("%s",(((bit & (1<<2)) !=0)?"true":"false"));
  ```
-# Typedef
+</details>   
+ 
+<details>
+<summary>Typedef</summary>
+    
 Typedef được sử dụng để tạo tên mới cho kiểu dữ liệu. 
 ```
 typedef uint8_t u8;
 u8 x = 10; // u8 bản chất nó là kiểu uint8_t
  ```
- # Tính size của Struct
+</details>
+    
+    
+<details>
+<summary>STRUCT</summary>
+ 
+ ## Tính size của Struct
  ```
  // Chương trình tính size của  1 struct
 #include <stdio.h>
@@ -206,7 +224,7 @@ struct typeDate
     uint32_t arr4[1]; // 4 byte
 };
 ```
-Cách tính số size :
+### Cách tính số size :
 
 uint8_t có size 1 byte => arr1[10] cần 1*10 = 10 byte để lưu, mà 1 lần quét là 8 byte (byte cao nhất trong struct) 
 
@@ -236,7 +254,7 @@ struct typeDate
     uint16_t arr3[7]; // 2 byte
 };
 ```
-Cách tính số size
+### Cách tính số size
 
 uint8_t có size 1 byte => arr1[11] cần 1*11 = 11 byte để lưu, mà 1 lần quét là 4 byte (byte cao nhất trong struct) 
 
@@ -252,3 +270,4 @@ uint16_t có size 2 byte => arr3[7] cần 2*7 = 14 byte để lưu
 
 ==> tổng size = 12 byte + 16 byte + 16 byte = 44 byte
 
+</details>
