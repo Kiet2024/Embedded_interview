@@ -1,3 +1,7 @@
+<details>
+
+<summary>Compiler</summary>
+
 # Compiler
 Compiler giống như 1 phần mềm dùng để chuyển ngôn ngữ bậc cao sang ngôn ngữ máy, đối với một ngôn ngữ lập trình (c/c++, python, java,...) thì có nhiều compiler.
     
@@ -12,6 +16,8 @@ Quá trình `tiền xử lý (Preprocessor)` xảy ra nó sẽ thay thế nhữn
 Quá trình `linker` sẽ sắp xếp các object files + libraries vào file *.exe .
 
 Bản chất file *.exe giống như file zip hay rar.
+    
+</details>
 
 # Phân vùng nhớ
 <img width="169" alt="image" src="https://github.com/Kiet2024/Embedded_interview/assets/133784431/7b238944-eb43-4d35-a0dd-2e94ad70a421">
