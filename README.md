@@ -12,6 +12,72 @@ Quá trình `tiền xử lý (Preprocessor)` xảy ra nó sẽ thay thế nhữn
 Quá trình `linker` sẽ sắp xếp các object files + libraries vào file *.exe .
 
 Bản chất file *.exe giống như file zip hay rar.
+
+# Phân vùng nhớ
+<img width="169" alt="image" src="https://github.com/Kiet2024/Embedded_interview/assets/133784431/7b238944-eb43-4d35-a0dd-2e94ad70a421">
+
+**Phân vùng Text:**
+- Quyền truy cập chỉ Read và nó chứa lệnh để thực thi nên tránh sửa đổi instruction.
+
+- Chứa khai báo hằng số trong chương trình (.rodata)
+```
+// Ví dụ : chỉ đọc data
+const int a = 9;
+char *arr = "Hello";
+```
+**Phân vùng Data:**
+- Quyền truy cập là read-write.
+
+- Chứa biến toàn cục or biến static với giá trị khởi tạo khác không.
+
+- Được giải phóng khi kết thúc chương trình.
+```
+#include <stdio.h>
+
+int x = 10; // biến toàn cục
+static int a = 15; // biến static toàn cục
+
+void test(){
+ static int b = 10; // biến static cục bộ
+ a = a + 20;
+ prinf("test: %d\n", a);
+}
+int main (){
+
+ test();
+ a = a +15;
+ prinf("main: %d\n", a);
+ return 0;
+ // Kết quả: test = 35, main = 50
+```
+**Phân vùng BSS:**
+- Quyền truy cập là read-write.
+
+- Chứa biến toàn cục or biến static với giá trị khởi tạo bằng không or không khởi tạo.
+
+- Được giải phóng khi kết thúc chương trình.
+```
+static int a ; // biến static toàn cục phân vùng bss
+/* khi giá trị được khởi tạo vd: a = 10 thì nó vẫn ở phân vùng bss */ 
+void test(){
+ static int b ; // biến static cục bộ
+}
+int main (){
+}
+```
+**Phân vùng Stack:**
+- Quyền truy cập là read-write.
+
+- Được sử dụng cấp phát cho biến local, input parameter của hàm,…
+
+- Sẽ được giải phóng khi ra khỏi block code/hàm.
+```
+int test(int a, int b){
+  int c;
+  c = a + b;
+  return c;
+}
+```
 # Các toán tử Bitwise
  ## Toán tử AND
  <img width="173" alt="image" src="https://github.com/Kiet2024/Embedded_interview/assets/133784431/131b91c7-7404-42a1-89d4-00713f196a51">
@@ -33,13 +99,13 @@ Dịch trái (<<) 4 bit là bỏ đi 4 bit bên trái(ở đầu) và thêm 4 bi
 <img width="357" alt="image" src="https://github.com/Kiet2024/Embedded_interview/assets/133784431/085599a0-6a96-4d58-b47a-507eb1705ee4">
 
 Dịch phải(>>) 1 bit là bỏ đi 1 bit bên phải(ở cuối) và thêm 1 bit 0 vào bên trái(ở đầu)
-## Xét 1 bit lên 1
+## Set 1 bit
 ```bit |= (1 << n); //(n là vị trí bit)```
-## Xét 1 bit xuống 0
+## Clear 1 bit
 ```bit &= ~(1 << n);```
-## Đảo 1 bit 
+## Toggle 1 bit 
 ```bit ^= (1 << n);```
-## Kiểm tra 1 biết là 0 hay 1
+## Test 1 bit
 ``` 
 // bit & (1 << n)
 int bit = 5; // 0101
