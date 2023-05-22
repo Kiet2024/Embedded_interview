@@ -48,7 +48,7 @@ int main (){
  a = a +15;
  prinf("main: %d\n", a);
  return 0;
- // Kết quả: test = 35, main = 50
+ // Result: test = 35, main = 50
 ```
 **Phân vùng BSS:**
 - Quyền truy cập là read-write.
@@ -85,6 +85,49 @@ int sum(int a, int b){
 - Được sử dụng để cấp phát bộ nhớ động như: Malloc, Calloc,…
 
 - Sẽ được giải phóng khi gọi hàm free,…
+```
+#include <stdio.h>
+#include <stdint.h>
+#include <stdlib.h>
+
+void test1(){
+  char arr[3]; // biến toàn cục
+  printf("Dia chi arr: %p\n", arr);
+}
+
+void test2(){
+/*
+ Khi khai báo kiểu malloc, các ô nhớ sẽ được giữ nguyên bộ nhớ ban đầu (draf data hay dữ liệu rác).
+ Kiểu trả về là con trỏ void (không có giá trị), tham số truyền vào là  size tính bằng byte.
+ Vì hàm malloc trả về dạng void, vậy ta cần ép kiểu cho nó trở về đúng kiểu con trỏ mà ta sử dụng.
+ Vì char có 1 byte nên khai báo sẽ được cấp 3 byte tương ứng 3 phần tử.
+*/
+  char *arr = (char*)malloc(sizeof(char)*3);
+  // arr = (char*)realloc(arr,(sizeof(char)*5) // thay đổi kích thước mảng 5 byte tương ứng 5 phần tử
+  printf("Dia chi arr: %p\n", arr);
+  free(arr);
+}
+
+int main(){
+  test1();
+  test1();
+  test2();
+  test2();
+}
+/*
+Result: khi chưa sử dụng lệnh free cho hàm malloc
+Dia chi arr: 0061FF0D : khi gọi test1 lần 1 sau khởi tạo xong nó sẽ thoát ra và thu hồi vùng nhớ 
+Dia chi arr: 0061FF0D : khi gọi test1 lần 2 nó khởi tạo địa chỉ trước đó vì địa chỉ đó vẫn còn trống.
+Dia chi arr: 00BA2F20 : do malloc được lưu ở phân vùng Heap nên nó không thể tự thu hồi 
+Dia chi arr: 00BA2F30
+
+Result: khi sử dụng lệnh free cho hàm malloc
+Dia chi arr: 0061FF0D
+Dia chi arr: 0061FF0D
+Dia chi arr: 00AD2F20
+Dia chi arr: 00AD2F20
+*/
+```
 # Các toán tử Bitwise
  ## Toán tử AND
  <img width="173" alt="image" src="https://github.com/Kiet2024/Embedded_interview/assets/133784431/131b91c7-7404-42a1-89d4-00713f196a51">
