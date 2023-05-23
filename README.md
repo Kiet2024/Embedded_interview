@@ -192,9 +192,14 @@ Sau khi PC chạy xong hàm A, lúc này nó sẽ vào Stack Pointer để lấy
   .    
 0xc6   }
 ```
+
+## Inline
+- Được xử lý bởi compiler
+- Được khai báo với từ khóa inline
+- Khi compiler thấy bất kỳ chỗ nào xuất hiện inline function, nó sẽ thay thế chỗ đó bởi định nghĩa của hàm đã được compiler tương ứng. –> Phần được thay thế không phải code mà là đoạn code đã được compiler.
      
-   
- </details>
+</details>
+    
     
 <details>
 <summary>TOÁN TỬ BITWISE</summary>
