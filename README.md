@@ -137,10 +137,63 @@ Dia chi arr: 00AD2F20
 </details>
     
  <details>
-  <summary>MACRO-FUNCTION</summary>
+ <summary>MACRO - FUNCTION - INLINE</summary>
      
+ ## Macro 
+ - Macro không phải là hàm, cũng không phải là biến mà nó chỉ là 1 định nghĩa.
+ - Macro được diễn ra ở quá trình tiền xử lý (preprocessor).
+ - Thay thế định nghĩa macro vào đoạn code đã gọi.
      
+ **VD1:**
+ ```
+ #define MAX 10
+ Preprocessor khi gặp bất kỳ lời gọi MAX nào thì thay ngay bằng 10.
      
+ #define SUM(a,b) a + b //SUM(a,b) gọi là định nghĩa
+ Preprocessor khi gặp bất kỳ lời gọi SUM(first,last) nào thì thay ngay bằng (first+last).
+ 
+ ```
+     
+ **VD2:**
+ ```
+  '\' trong Macro dùng để liên kết nội dung dòng bên dưới 
+  #define CREATE_FUNC(ten_ham, noi_dung)    \
+  void ten_ham(){                           \
+     printf("%s\n",noi_dung);               \
+  }
+  CREATE_FUNC(test,"this is test\n"); // tạo ra hàm test
+   /*
+   void test(){                           
+     printf("%s\n","this is test\n");       
+  }
+   */
+  CREATE_FUNC(test2,"this is test2\n"); // tạo ra thêm hàm test2
+  
+ ```
+ ## Function
+- Khi thấy hàm được gọi, compiler sẽ phải lưu con trỏ chương trình Program Couter (PC) hiện tại vào Stack Pointer; chuyển Program Counter tới hàm được gọi, thực hiện hàm đó xong và lấy kết quả trả về; sau đó quay lại vị trí ban đầu trong stack trước khi gọi hàm và tiếp tục thực hiện chương trình.
+- Như có thể thấy, các này khiến chương trình tốn thời gian hơn là chỉ cần thay thế đoạn code đã được compile (cách của inline function).
+     
+**VD: giả sử trường hợp 8 bit**
+```
+Trường hợp đang ở dưới thì khi đến 0x03 thì nó gặp 1 hàm. 
+Lúc này nó sẽ lưu 0x03 vào Stack Pointer và PC nó sẽ vào hàm A để chạy từ 0xc1 đến 0xc6.
+Sau khi PC chạy xong hàm A, lúc này nó sẽ vào Stack Pointer để lấy 0x03 gán cho PC và tiếp tục chạy từ 0x03 đến 0x08.
+ 
+0x01   main (){           
+0x02    while(1){     
+0x03     A();
+ .    
+ .      }
+0x08  }
+
+0xc1    void A(){
+  .
+  .    
+0xc6   }
+```
+     
+   
  </details>
     
 <details>
