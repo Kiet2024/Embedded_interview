@@ -198,6 +198,14 @@ Sau khi PC chạy xong hàm A, lúc này nó sẽ vào Stack Pointer để lấy
 - Được khai báo với từ khóa inline
 - Khi compiler thấy bất kỳ chỗ nào xuất hiện inline function, nó sẽ thay thế chỗ đó bởi định nghĩa của hàm đã được compiler tương ứng. –> Phần được thay thế không phải code mà là đoạn code đã được compiler.
      
+## So sánh
+- `Macro` đơn giản là chỉ `thay thế đoạn code macro vào chỗ được gọi` trước khi được biên dịch
+- `Inline thay thế đoạn mã code đã được biên dịch vào chỗ được gọi`.
+- `Hàm bình thường phải tạo một function call`, lưu địa chỉ trước khi gọi hàm vào stack sau đó mới thực hiện hàm và sau cùng là quay trở về địa chỉ trên stack trước khi gọi hàm và thực hiện tiếp chương trình
+- `Macro khiến code trở nên dài` hơn rất nhiều so với bình thường `nhưng thời gian chạy nhanh`.
+- `Hàm inline cũng khiến code dài hơn`, tuy nhiên nó làm `giảm thời gian chạy chương trình`.
+- `Hàm bình thường` sẽ phải gọi function call nên `tốn thời gian hơn inline function` nhưng `code ngắn gọn hơn`.
+   
 </details>
     
     
