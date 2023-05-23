@@ -136,6 +136,13 @@ Dia chi arr: 00AD2F20
     
 </details>
     
+ <details>
+  <summary>MACRO-FUNCTION</summary>
+     
+     
+     
+ </details>
+    
 <details>
 <summary>TOÁN TỬ BITWISE</summary>
     
