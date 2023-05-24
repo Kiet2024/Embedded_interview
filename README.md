@@ -362,3 +362,63 @@ Về mặt ý nghĩa, struct và union cơ bản giống nhau. Tuy nhiên, về 
 - Union : Dữ liệu các thành viên sẽ dùng chung 1 vùng nhớ. Kích thước của union được tính là kích thước lớn nhất của kiểu dữ liệu trong union. Việc thay đổi nội dung của 1 thành viên sẽ dẫn đến thay đổi nội dung của các thành viên khác.
 
 </details>
+
+<details>
+    <summary>STATIC</summary>
+
+ ## Static cục bộ
+Khi 1 biến cục bộ được khai báo với từ khóa static. Biến sẽ chỉ được `khởi tạo 1 lần duy nhất` và `tồn tại suốt thời gian chạy chương trình`. `Giá trị của nó không bị mất đi ngay cả kết thúc hàm`. Tuy nhiên khác với biến toàn cục có thể gọi trong tất cả mọi nơi trong chương trình, thì `biến cục bộ static chỉ có thể được gọi trong nội bộ hàm khởi tạo ra nó`. Mỗi lần hàm được gọi, giá trị của biến chính bằng giá trị tại lần gần nhất hàm được gọi.
+```
+// Ví dụ
+#include <stdio.h>
+    
+void dem(){
+    static int count = 10; // static cục bộ
+    printf("count = %d\n",count);
+    count++;
+}
+    
+int main()
+{
+    dem();
+    dem();
+    dem();
+    
+    return 0;
+}
+/*
+    Result:
+    10
+    11
+    12
+*/
+```
+## Static toàn cục
+Static toàn cục mọi hàm có thể gọi nó được, nhưng nó chỉ có thể được `truy cập và sử dụng trong File khai báo nó, các File khác không có cách nào truy cập được`.
+```
+ // Ví dụ
+ #include <stdio.h>
+
+/*
+    static toàn cục chỉ có thể lấy giá trị trong file chứa nó
+    nên khi sử dụng extern để sử dụng biến, hàm đó ở file khác sẽ báo lỗi
+*/
+
+static int count = 16;
+
+void dem(){
+    printf("count = %d\n",count);
+    count++;
+}
+int main()
+{
+    dem();
+    dem();
+}
+/*
+    Result: 
+    16
+    17
+*/
+```
+</details>
