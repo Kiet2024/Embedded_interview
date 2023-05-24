@@ -262,9 +262,10 @@ u8 x = 10; // u8 bản chất nó là kiểu uint8_t
     
     
 <details>
-<summary>STRUCT</summary>
+<summary>STRUCT - UNION</summary>
  
- ## Tính size của Struct
+## Struct
+ ### Size của Struct
  ```
  // Chương trình tính size của  1 struct
 #include <stdio.h>
@@ -342,5 +343,22 @@ uint16_t có size 2 byte => arr3[7] cần 2*7 = 14 byte để lưu
 => arr2[7] = 14 byte + 2 byte dư = 16 byte (cần 4 lần quét)
 
 ==> tổng size = 12 byte + 16 byte + 16 byte = 44 byte
+
+## Union  
+ ```
+typedef union
+{
+    /*size union = size member lớn nhất
+      union là bộ nhớ dùng chung nên khi thay đổi member này sẽ ảnh hưởng đến
+      member khác.
+    */
+    uint8_t test1[6]; // 6 byte
+    uint8_t test2[2]; // 2 byte
+}data_union;
+ ```
+## So sánh Struct - Union
+Về mặt ý nghĩa, struct và union cơ bản giống nhau. Tuy nhiên, về mặt lưu trữ trong bộ nhớ, chúng có sự khác biệt rõ rệt như sau:
+- Struct: Dữ liệu của các thành viên của struct được lưu trữ ở những vùng nhớ khác nhau. Do đó kích thước của 1 struct tối thiểu bằng kích thước các thành viên cộng lại tại vì còn phụ thuộc vào bộ nhớ đệm (struct padding).
+- Union : Dữ liệu các thành viên sẽ dùng chung 1 vùng nhớ. Kích thước của union được tính là kích thước lớn nhất của kiểu dữ liệu trong union. Việc thay đổi nội dung của 1 thành viên sẽ dẫn đến thay đổi nội dung của các thành viên khác.
 
 </details>
