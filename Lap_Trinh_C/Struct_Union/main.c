@@ -17,8 +17,8 @@ typedef union
       union là bộ nhớ dùng chung nên khi thay đổi member này sẽ ảnh hưởng đến
       member khác
     */
-    uint8_t test1[6];
-    uint8_t test2[2];
+    uint8_t test1[6]; // 6 byte
+    uint8_t test2[2]; // 2 byte
 
 }data_union;
  
