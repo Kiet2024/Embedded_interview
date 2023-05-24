@@ -422,3 +422,9 @@ int main()
 */
 ```
 </details>
+    
+<details>
+<summary>POINTER</summary>
+    
+    
+</details>
