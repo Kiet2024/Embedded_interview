@@ -6,7 +6,7 @@ typedef struct
     // size struct = tổng các member + bộ nhớ đệm(nếu có)
     uint16_t arr1[7];
     uint64_t arr4[5];
-    uint32_t arr2[1];
+    uint32_t arr2[2];
     uint8_t arr3[10];
 
 }data_struct;
