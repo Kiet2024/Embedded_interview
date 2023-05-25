@@ -425,6 +425,64 @@ int main()
     
 <details>
 <summary>POINTER</summary>
+ 
+## Null Pointer
+- Con trỏ null là con trỏ có giá trị và địa chỉ bằng 0.
+- Khi khai báo 1 con trỏ:
+    + Phải khai báo địa chỉ cho nó.
+    + Nếu mà chưa sử dụng thì gán cho nó con trỏ null. 
+    + Hoặc khi khai báo con trỏ và đã sử dụng nó rồi, khi không muốn sử dụng nó nữa thì phải gán nó lại là con trỏ null.
+```
+    int *ptr = NULL;
+```
+## Function Pointer
+- Sau khi khai báo thì hàm cũng được lưu trữ tại một địa chỉ trong bộ nhớ, và do đó, chúng ta cũng có thể sử dụng con trỏ để lưu trữ địa chỉ và qua đó thao tác với chúng.
+- Chúng ta gọi con trỏ lưu trữ địa chỉ của một hàm là con trỏ hàm trong c, và sử dụng nó để truy cập vào địa chỉ của hàm, cũng như thực thi các xử lý bên trong hàm đó.
+ ```
+    Cách khai báo:
+        type (*fp) ( para_type_1, para_type_2, para_type_3,...);
+    fp: tên con trỏ hàm.
+    type: kiểu của con trỏ.
+    para_type_1,.. : các kiểu của các đối số parameter.
+ ```
+ ```
+ VD:
+#include <stdio.h>
+
+void tong(int a,int b){
+    printf("tong %d va %d = %d\n", a, b, a + b);
+}
+
+void hieu(int a,int b){
+    printf("hieu %d va %d = %d\n", a, b, a - b);
+}
+
+void tich(int a,int b){
+    printf("tich %d va %d = %d\n", a, b, a * b);
+}
+
+void thuong(int a,int b){
+    printf("thuong %d va %d = %f\n", a, b, (float)a/b);
+}
+
+void tinhtoan(int a, int b, void (*ptr)(int, int))
+{   // thông qua con trỏ hàm để hàm làm input parameter
+    printf("Chuong trin tinh toan\n");
+    ptr(a,b);
+}
+int main()
+{
+
+    // void (*pheptoan)(int, int) = NULL;
+    // pheptoan = thuong;
+    // pheptoan(5,9);
+
+    tinhtoan(8,9,hieu);
+    return 0;
+}
+    
+ ```
+ ## Void Pointer
     
     
 </details>
