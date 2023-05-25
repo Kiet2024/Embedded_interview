@@ -483,6 +483,40 @@ int main()
     
  ```
  ## Void Pointer
+ - `Con trỏ void có thể trỏ đến các vùng nhớ có các kiểu dữ liệu khác nhau`.
+ - Tuy nhiên, con trỏ void không xác định được kiểu dữ liệu của vùng nhớ mà nó trỏ tới, vì vậy không thể truy cập xuất trực tiếp nội dung thông qua toán tử derefernce () được. Mà `con trỏ kiểu void` cần `phải được ép kiểu` một cách rõ ràng `sang con trỏ có kiểu dữ liệu khác trước khi sử dụng toán tử derefernce` ().
+ ```
+ #include <stdio.h>
+
+void tong(int a,int b){
+    printf("tong %d va %d = %d\n", a, b, a + b);
+}
+
+int main()
+{
+
+    int i = 30;
+    double d =15.6;
+    char c ='B';
+
+    // con trỏ void có thể trỏ đến bất kỳ địa chỉ nào 
+    void *ptr = &i;
+
+    // để lấy giá trị từ con trỏ void ta cần ép kiểu nó
+    printf("i = %d\n",*(int *)ptr);
+
+    ptr = &d;
+    printf("d = %f\n",*(double *)ptr);
+
+    ptr = &c;
+    printf("c = %c\n",*(char *)ptr);
+
+    ptr = &tong;
+    ((void (*)(int, int))ptr)(9,16);
+    return 0;
+}
     
+ ```
+ ## Pointer to Pointer
     
 </details>
