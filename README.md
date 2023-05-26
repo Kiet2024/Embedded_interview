@@ -364,8 +364,42 @@ Về mặt ý nghĩa, struct và union cơ bản giống nhau. Tuy nhiên, về 
 </details>
 
 <details>
-    <summary>STATIC</summary>
+    <summary>EXTERN - STATIC</summary>
+    
+ ## Extern
 
+ Biến extern được sử dụng khi một tệp cụ thể cần truy cập một biến từ tệp khác.
+    
+ **VD:**
+ ``` 
+// file main.c
+#include <stdio.h>
+extern int count; // sử dụng biến count ở file test
+extern void dem(); //sử dụng hàm ở file test
+int main ()
+{
+    printf("count: %d\n",count);
+    dem();
+    dem();
+    return 0; 
+   /* Run chương trình : gcc main.c test.c -o main
+                        ./main
+    Result :   16 
+               16
+               17 
+    */
+}
+ ```
+
+```
+// flie test.c  
+int count = 16;
+
+void dem(){
+    printf("count = %d\n",count);
+    count++;
+}
+```
  ## Static cục bộ
 Khi 1 biến cục bộ được khai báo với từ khóa static. Biến sẽ chỉ được `khởi tạo 1 lần duy nhất` và `tồn tại suốt thời gian chạy chương trình`. `Giá trị của nó không bị mất đi ngay cả kết thúc hàm`. Tuy nhiên khác với biến toàn cục có thể gọi trong tất cả mọi nơi trong chương trình, thì `biến cục bộ static chỉ có thể được gọi trong nội bộ hàm khởi tạo ra nó`. Mỗi lần hàm được gọi, giá trị của biến chính bằng giá trị tại lần gần nhất hàm được gọi.
 ```
@@ -425,6 +459,141 @@ int main()
     
 <details>
 <summary>POINTER</summary>
+ 
+## Null Pointer
+- Con trỏ null là con trỏ có giá trị và địa chỉ bằng 0.
+- Khi khai báo 1 con trỏ:
+    + Phải khai báo địa chỉ cho nó.
+    + Nếu mà chưa sử dụng thì gán cho nó con trỏ null. 
+    + Hoặc khi khai báo con trỏ và đã sử dụng nó rồi, khi không muốn sử dụng nó nữa thì phải gán nó lại là con trỏ null.
+```
+    int *ptr = NULL;
+```
+## Function Pointer
+- Sau khi khai báo thì hàm cũng được lưu trữ tại một địa chỉ trong bộ nhớ, và do đó, chúng ta cũng có thể sử dụng con trỏ để lưu trữ địa chỉ và qua đó thao tác với chúng.
+- Chúng ta gọi con trỏ lưu trữ địa chỉ của một hàm là con trỏ hàm trong c, và sử dụng nó để truy cập vào địa chỉ của hàm, cũng như thực thi các xử lý bên trong hàm đó.
+ ```
+    Cách khai báo:
+        type (*fp) ( para_type_1, para_type_2, para_type_3,...);
+    fp: tên con trỏ hàm.
+    type: kiểu của con trỏ.
+    para_type_1,.. : các kiểu của các đối số parameter.
+ ```
+ ```
+ VD:
+#include <stdio.h>
+
+void tong(int a,int b){
+    printf("tong %d va %d = %d\n", a, b, a + b);
+}
+
+void hieu(int a,int b){
+    printf("hieu %d va %d = %d\n", a, b, a - b);
+}
+
+void tich(int a,int b){
+    printf("tich %d va %d = %d\n", a, b, a * b);
+}
+
+void thuong(int a,int b){
+    printf("thuong %d va %d = %f\n", a, b, (float)a/b);
+}
+
+void tinhtoan(int a, int b, void (*ptr)(int, int))
+{   // thông qua con trỏ hàm để hàm làm input parameter
+    printf("Chuong trin tinh toan\n");
+    ptr(a,b);
+}
+int main()
+{
+
+    // void (*pheptoan)(int, int) = NULL;
+    // pheptoan = thuong;
+    // pheptoan(5,9);
+
+    tinhtoan(8,9,hieu);
+    return 0;
+}
     
+ ```
+ ## Void Pointer
+ - `Con trỏ void có thể trỏ đến các vùng nhớ có các kiểu dữ liệu khác nhau`.
+ - Tuy nhiên, con trỏ void không xác định được kiểu dữ liệu của vùng nhớ mà nó trỏ tới, vì vậy không thể truy cập xuất trực tiếp nội dung thông qua toán tử derefernce () được. Mà `con trỏ kiểu void` cần `phải được ép kiểu` một cách rõ ràng `sang con trỏ có kiểu dữ liệu khác trước khi sử dụng toán tử derefernce` ().
+ ```
+ #include <stdio.h>
+
+void tong(int a,int b){
+    printf("tong %d va %d = %d\n", a, b, a + b);
+}
+
+int main()
+{
+
+    int i = 30;
+    double d =15.6;
+    char c ='B';
+
+    // con trỏ void có thể trỏ đến bất kỳ địa chỉ nào 
+    void *ptr = &i;
+
+    // để lấy giá trị từ con trỏ void ta cần ép kiểu nó
+    printf("i = %d\n",*(int *)ptr);
+
+    ptr = &d;
+    printf("d = %f\n",*(double *)ptr);
+
+    ptr = &c;
+    printf("c = %c\n",*(char *)ptr);
+
+    ptr = &tong;
+    ((void (*)(int, int))ptr)(9,16);
+    return 0;
+}
     
+ ```
+ ## Pointer to Pointer
+ Con trỏ trỏ đến con trỏ (Pointers to pointers) là một con trỏ chứa địa chỉ của một con trỏ khác.
+    
+ ```
+  cách khai báo: 
+   data_type_of_pointer **name_of_variable = & normal_pointer_variable;
+ ```
+ 
+ ```
+int val = 5; 
+int *ptr = &val; // lưu địa chỉ của val vào con trỏ ptr. 
+int **d_ptr = &ptr; // con trỏ tới một con trỏ được khai báo 
+                    // đang trỏ tới một số nguyên.
+    
+ ```
+ ```
+ VD :
+ #include <stdio.h>
+ 
+int main()
+{
+    int var = 789;
+ 
+    int* ptr2;
+ 
+    int** ptr1;
+ 
+    ptr2 = &var;
+ 
+    ptr1 = &ptr2;
+ 
+    printf("Gia tri var = %d\n", var);
+    printf("Gia tri *pointer = %d\n", *ptr2);
+    printf("Gia tri **pointer = %d\n", **ptr1);
+ 
+    return 0;
+    
+    /*
+     Result : 
+        Gia tri var = 789
+        Gia tri *pointer = 789
+        Gia tri **pointer = 789
+    */
+}
+ ```
 </details>
