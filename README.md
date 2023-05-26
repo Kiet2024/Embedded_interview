@@ -364,8 +364,42 @@ Về mặt ý nghĩa, struct và union cơ bản giống nhau. Tuy nhiên, về 
 </details>
 
 <details>
-    <summary>STATIC</summary>
+    <summary>EXTERN - STATIC</summary>
+    
+ ## Extern
 
+ Biến extern được sử dụng khi một tệp cụ thể cần truy cập một biến từ tệp khác.
+    
+ **VD:**
+ ``` 
+// file main.c
+#include <stdio.h>
+extern int count; // sử dụng biến count ở file test
+extern void dem(); //sử dụng hàm ở file test
+int main ()
+{
+    printf("count: %d\n",count);
+    dem();
+    dem();
+    return 0; 
+   /* Run chương trình : gcc main.c test.c -o main
+                        ./main
+    Result :   16 
+               16
+               17 
+    */
+}
+ ```
+
+```
+// flie test.c  
+int count = 16;
+
+void dem(){
+    printf("count = %d\n",count);
+    count++;
+}
+```
  ## Static cục bộ
 Khi 1 biến cục bộ được khai báo với từ khóa static. Biến sẽ chỉ được `khởi tạo 1 lần duy nhất` và `tồn tại suốt thời gian chạy chương trình`. `Giá trị của nó không bị mất đi ngay cả kết thúc hàm`. Tuy nhiên khác với biến toàn cục có thể gọi trong tất cả mọi nơi trong chương trình, thì `biến cục bộ static chỉ có thể được gọi trong nội bộ hàm khởi tạo ra nó`. Mỗi lần hàm được gọi, giá trị của biến chính bằng giá trị tại lần gần nhất hàm được gọi.
 ```
@@ -540,20 +574,14 @@ int main()
 {
     int var = 789;
  
-    // pointer for var
     int* ptr2;
  
-    // double pointer for ptr2
     int** ptr1;
  
-    // storing address of var in ptr2
     ptr2 = &var;
  
-    // Storing address of ptr2 in ptr1
     ptr1 = &ptr2;
  
-    // Displaying value of var using
-    // both single and double pointers
     printf("Gia tri var = %d\n", var);
     printf("Gia tri *pointer = %d\n", *ptr2);
     printf("Gia tri **pointer = %d\n", **ptr1);
