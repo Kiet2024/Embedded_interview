@@ -518,5 +518,54 @@ int main()
     
  ```
  ## Pointer to Pointer
+ Con trỏ trỏ đến con trỏ (Pointers to pointers) là một con trỏ chứa địa chỉ của một con trỏ khác.
     
+ ```
+  cách khai báo: 
+   data_type_of_pointer **name_of_variable = & normal_pointer_variable;
+ ```
+ 
+ ```
+int val = 5; 
+int *ptr = &val; // lưu địa chỉ của val vào con trỏ ptr. 
+int **d_ptr = &ptr; // con trỏ tới một con trỏ được khai báo 
+                    // đang trỏ tới một số nguyên.
+    
+ ```
+ ```
+ VD :
+ #include <stdio.h>
+ 
+int main()
+{
+    int var = 789;
+ 
+    // pointer for var
+    int* ptr2;
+ 
+    // double pointer for ptr2
+    int** ptr1;
+ 
+    // storing address of var in ptr2
+    ptr2 = &var;
+ 
+    // Storing address of ptr2 in ptr1
+    ptr1 = &ptr2;
+ 
+    // Displaying value of var using
+    // both single and double pointers
+    printf("Gia tri var = %d\n", var);
+    printf("Gia tri *pointer = %d\n", *ptr2);
+    printf("Gia tri **pointer = %d\n", **ptr1);
+ 
+    return 0;
+    
+    /*
+     Result : 
+        Gia tri var = 789
+        Gia tri *pointer = 789
+        Gia tri **pointer = 789
+    */
+}
+ ```
 </details>
