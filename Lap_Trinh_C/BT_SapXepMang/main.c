@@ -21,13 +21,13 @@ void SortList(uint8_t array[], int size_array){
 }
 
 void DemPhanTu(uint8_t array[], uint8_t size_array){
-    int count[10000] ={0};
+    int count[1000] ={0};
     for (int i = 0; i < size_array; i++)
     {
         count[array[i]]++;
     }
 
-    for (int i = 0; i < 10000; i++)
+    for (int i = 0; i < 1000; i++)
     {
         if (count[i] > 0)
         {
@@ -42,9 +42,7 @@ void XuatMang(uint8_t array[], uint8_t size_array){
     {
         printf("%d ",array[i]);
     }
-
 }
-
 
 int main()
 {
