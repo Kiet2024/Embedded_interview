@@ -1,95 +1,123 @@
 #include <stdio.h>
 #include <stdint.h>
 
-#define TONG(a,b) a + b
-#define HIEU(a,b) a - b
-#define NHAN(a,b) a * b
-#define CHIA(a,b) a / b
-
-void xuatMang(int arr[], int size_arr) {
-    for (int i = 0; i < size_arr; i++)
-    {
-        printf("%d ",arr[i]);
-    }
+int SUM(int input_1, int input_2) {
+    return input_1 + input_2;
 }
 
-void xoaPhanTuMang (int arr[], int size_arr, int n) {
-    for (int j = 0; j < n; j++)
+int SUB(int input_1, int input_2) {
+    return input_1 - input_2;
+}
+
+int MUL(int input_1, int input_2) {
+    return input_1 * input_2;
+}
+
+int DIV(int input_1, int input_2) {
+    return (float)input_1 / input_2;
+}
+
+typedef enum{
+    NUMBER,
+    OPERATOR,
+}TypeMath;
+
+typedef struct{
+    TypeMath key;
+    union 
     {
-        for (int i = 1; i < size_arr; i++) {
-            arr[i] = arr[i+1];
+        uint16_t number;
+        char operator; 
+    }value;
+}typeMaths;
+
+void stringToDec( char input[], typeMaths output[]) {
+    uint16_t number = 0;
+    uint8_t i = 0;
+
+    while (*input != '\0')
+    {
+        if (*input >= '0' && *input <= '9') {
+            uint8_t temp = *input - '0';
+            number = 10 * number + temp;
+            input++;
+            continue;
         }
-        size_arr--; 
-    }
+        else if (*input == '+' || *input == '-' ||
+                *input == '*' || *input == '/' ){
+            output[i].key = OPERATOR;
+            output[i].value.operator = *input;
+            i++;
+            input++;
+            continue;
 
+        }
+        else{
+            if(number != 0) {
+                output[i].key = NUMBER;
+                output[i].value.number = number;
+                number = 0;
+                i++;
+            }
+        }
+        input++;
+        
+    }
+    output[i].key = NUMBER;
+    output[i].value.number = number;
 }
 
-
-int main() 
+int main ()
 {
+    char input[] = "10 + 8 - 614 + 7 - 532 * 2";
+    typeMaths output[20];
+    stringToDec(input, output);
     int sum = 0;
-    int array[] = {4,'-', 6, '-', '(', 5, '*', 7, ')', '=', '?'};
-    //int array2[10] = {4, 6, 7, 9};
-    int size_array, size_array2;
-    int counter = 0;
-    int count = 11;
-    int soluongxoa = 0;
-    int temp = 0;
 
-    size_array = sizeof(array) / sizeof(array[0]);
-    //size_array2 = sizeof(array2) / sizeof(array2[0]);
+    for (int i = 0; i < 20; i++){
+        if (output[i].value.operator == '*'){
+            sum = MUL(output[i + 1].value.number, output[i -1].value.number);
+            output[i-1].key = NUMBER;
+            output[i-1].value.number = sum;
+            output[i+1].value.number = 0;
+            output[i].value.operator = 0;
+            sum = 0;
+        }
 
-    for (int k = 0; k < size_array; k++) {
-        //for (int i = 0; i < 3; i++)
-        //{
-            int i = 0;
-            if (array[i+1] == '=' && array[i+2] == '?'){
-                    break;
-            }
-            else if (array[i] != 0 && array[i] != '('){
-                if (array[i+1] = '-'){
-                    if (array[i+2] != 0){
-                        sum = HIEU(array[i],array[i+2]);
-                        array[i] = sum;
-                        xoaPhanTuMang(array, size_array,2);
-                    }
-                    else if (array[i+2] == '(' ){
-                        int pointer = i + 2;
-                        for (int j = pointer + 1; j < size_array; j++)
-                        {
-                            if (array[j+1] = '*' && (array[j+3] != 0 || array[j+3] ==')'))
-                            {
-                                sum = NHAN(array[j],array[j+2]);
-                                if (array[j + 3] == ')') {
-                                    if (array[j+4] == '/' && (array[j+5] != 0) && (array[j+6] =='+' || array[j+6] == '-' || array[j+6] == '='))
-                                    {
-                                        sum = CHIA(sum,array[j+5]);
-                                    }
-                                    else if (array[j+4] == '='){
-                                        break;
-                                    }
-                                }
-                            }
-             
-                        }
-                        array[i+2] = sum;
-                        sum = HIEU(array[i],array[i+2]);
-                        array[i] = sum;
-                        xoaPhanTuMang(array, size_array,5);
-                    }
-                }
-                 
-            }
-        //}
     }
-        
-        
-    //xoaPhanTuMang(array2,size_array2);
-    printf("\n");
-    xuatMang(array, size_array);
-    // printf("%d.",temp);
-    // printf("\n%d\n",array[2]);
-    // printf("%d\n",array[1]);
 
+    
+    for (int i = 0; i < 20; i++){
+        if (output[i].value.operator == '+'){
+            sum = sum + SUM(output[i + 1].value.number, output[i -1].value.number);
+            output[i+1].key = NUMBER;
+            output[i+1].value.number = sum;
+            output[i-1].value.number = 0;
+            output[i].value.operator = 0;
+            
+        }
+        else{
+            sum = sum + SUB(output[i + 1].value.number, output[i -1].value.number);
+            output[i+1].key = NUMBER;
+            output[i+1].value.number = sum;
+            output[i].value.operator = 0;
+        }
+
+    }
+
+    for (int i = 0; i < 20; i++)
+    {
+        if (output[i].key == NUMBER)
+        {
+            printf("\nNUMBER %d",output[i].value.number);
+        }
+        else if (output[i].key == OPERATOR){
+            printf("\nOPERATION %c",output[i].value.operator);
+        }
+        
+    }
+    
+
+    printf("\n%d",sum);
     return 0;
 }
