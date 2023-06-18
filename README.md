@@ -597,3 +597,40 @@ int main()
 }
  ```
 </details>
+
+<details>
+    
+<summary> Class trong C++ </summary>
+
+Lớp (Class) có thể coi là bản thiết kế của các đối tượng (Object). Nó là một kiểu dữ liệu do người dùng định nghĩa, chứa các thành viên dữ liệu và các hàm thành viên của riêng nó.
+
+```
+// VD : Cấu trúc của 1 class đơn giản
+class SinhVien{
+    public: // phạm vi truy cập
+// member có thể là biến, hàm, mảng
+        int tuoi; // property
+        int lop; // property
+        void hienThi(); // method
+};
+
+int main ()
+{
+    Sinhvien sv, sv2; // Sinh vien được gọi là class; sv, sv2 gọi là object và là 2 địa chỉ khác nhau.
+}
+
+```
+- Trong cấu trúc của class `biến` trong class gọi là `property`, `hàm` gọi là `method`.
+- Class khác với Struct vì `Struct không có biến, hàm và không khởi tạo giá trị mặc định`.
+
+</details>
+
+<details>
+<summary>Phạm vi truy cập trong C++</summary>
+
+Phạm vi truy cập là cách mà người lập trình quy định về quyền được truy xuất đến các thành phần của lớp. Trong C++ có `3 loại phạm vi chính` là: `private, protected, public`.
+
+## Private
+
+    
+</details>
