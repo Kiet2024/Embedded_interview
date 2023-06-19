@@ -600,7 +600,7 @@ int main()
 
 <details>
     
-<summary> Class trong C++ </summary>
+<summary> CLASS TRONG C++ </summary>
 
 Lớp (Class) có thể coi là bản thiết kế của các đối tượng (Object). Nó là một kiểu dữ liệu do người dùng định nghĩa, chứa các thành viên dữ liệu và các hàm thành viên của riêng nó.
 
@@ -626,11 +626,95 @@ int main ()
 </details>
 
 <details>
-<summary>Phạm vi truy cập trong C++</summary>
+<summary>PHẠM VI TRUY CẬP TRONG C++</summary>
 
 Phạm vi truy cập là cách mà người lập trình quy định về quyền được truy xuất đến các thành phần của lớp. Trong C++ có `3 loại phạm vi chính` là: `private, protected, public`.
 
-## Private
+## Public
+Những member nằm trong phạm vi Public thì có thể truy cập bên trong hoặc bên ngoài class.
+```
+class SinhVien{
+    public: 
+// member có thể là biến, hàm, mảng
+        int tuoi; // property
+        int lop; // property
+        void hienThi(); // method
+};
+void SinhVien::hienthi(){ // truy cập bên trong class
+    cout<<"Tuoi:" <<tuoi<<endl; 
+    cout<<"Lop: " <<lop<<endl;
+}
 
+int main ()
+{
+    Sinhvien sv, sv2; // Sinh vien được gọi là class; sv, sv2 gọi là object và là 2 địa chỉ khác nhau.
+    sv.tuoi = 5; // truy cập bên ngoài class
+    sv.lop = 1;
+    // Result : Tuoi: 5 , Lop: 1
+}
+
+```
+
+### Constructor
+`Constructor` phải được `khai báo ở đầu` trong phạm vi `Public` và phải `trùng tên với Class`. 
+`Constructor gồm ` có constructor `có tham số đầu` vào và `không có tham số đầu vào`.
+
+## Private
+Những member nằm trong phạm vi Private thì chỉ có bên trong class mới truy cập được( dùng  method trong class để truy cập ) và những object sẽ không truy cập được. 
+
+```
+class SinhVien{
+    public:
+        void hienthi(); // method
+    private:
+        int tuoi = 6; //property
+        int lop = 2;
+
+};
+
+int main ()
+{
+    SinhVien sv; // object chỉ truy cập phạm vi Public
+    sv.hienthi(); // result tuoi = 6, lop = 2 
+    sv.tuoi = 5; // báo lỗi
+    sv.lop = 1; // báo lỗi
+}
+
+```
+- Đoạn chương trình trên sẽ báo lỗi do 2 property `tuoi` và `lop` nằm ở phạm vi `Private` nên Object không thể truy cập được.
+- Để có thể `truy cập vào phạm vị Private` thì phải `dùng các method trong class đó` để truy cập .
+```
+class SinhVien{
+    public:
+        void hienthi(); // method
+        void themThongTin(int tuoi, int lop); // method
+    private:
+        int tuoi; //property
+        int lop;
+
+};
+
+void SinhVien::hienthi(){ // dùng method để truy cập vào class sinh viên
+    cout<<"Tuoi:" <<tuoi<<endl; // nên có thể truy cập vào property ở Private
+    cout<<"Lop: " <<lop<<endl;
+}
+
+void SinhVien::themThongTin(int tuoi, int lop){ // dùng method để truy cập vào class sinh viên
+   
+    SinhVien::tuoi = tuoi;   // do đặt 2 'tuoi' và 'lop' trùng tên nhau nên muốn gán giá trị đầu vào
+    SinhVien::lop  = lop;    //  Cần trỏ đến property 'tuoi' bằng cách SinhVien::tuoi = giá trị đầu vào
+ }
+
+int main ()
+{
+    SinhVien sv; // object chỉ truy cập phạm vi Public
+    sv.themThongTin(10, 5);
+    sv.hienthi();
+
+}
+
+```
+
+  
     
 </details>
