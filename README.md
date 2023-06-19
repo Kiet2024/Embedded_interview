@@ -1059,6 +1059,7 @@ int main ()
 <details>
 
 <Summary> NAMESPACE (C++)</Summary>
+
 `Namespace` là từ khóa trong C++ được sử dụng để định nghĩa một phạm vi `nhằm mục đích phân biệt các hàm, lớp, biến,... cùng tên trong các thư viện khác nhau`.
 
 ```
