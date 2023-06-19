@@ -1109,7 +1109,7 @@ namespace ConOngB{
 </details>
 
 <details>
-<summary>VECTOR - LIST - MAP (C++)</summary>
+<summary>VECTOR - LINKED LIST - MAP (C++)</summary>
 
  ## Vector
 - Giống như là mảng (array), vector trong C++ là một đối tượng dùng để chứa các đối tượng khác, và các đối tượng được chứa này cũng được lưu trữ một cách liên tiếp trong vector.
@@ -1161,5 +1161,18 @@ int main()
 
 ```
 
-## List
+## Linked List
+
+`Linked List là một cấu trúc dữ liệu độn`g, nó là một danh sách mà mỗi phần tử đều liên kết với phần tử đúng sau nó trong danh sách. Mỗi phần tử (được gọi là một node hay nút) trong danh sách liên kết đơn là `một cấu trúc có hai thành phần`:
+	- Thành phần dữ liệu: lưu thông tin về bản thân phần tử đó.
+	- Thành phần liên kết: lưu địa chỉ phần tử đứng sau trong danh sách, nếu phần tử đó là phần tử cuối cùng thì thành phần này bằng NULL.
+Linked List là một cấu trúc dữ liệu động, được tạo nên nhờ việc cấp phát động nên nó có `một số đặc điểm sau đây`:
+	- Được cấp phát bộ nhớ khi chạy chương trình.
+	- Có thể thay đổi kích thước qua việc thêm, xóa phần tử.
+	- Kích thước tối đa phụ thuộc vào bộ nhớ khả dụng của RAM.
+	- Các phần tử được lưu trữ ngẫu nhiên (không liên tiếp) trong RAM.
+
+ ## Map
+
+Map trong C++ là một tập hợp các phần tử được sắp xếp theo thứ tự cụ thể, mà mỗi phần tử trong đó được hình thành bởi sự kết hợp của một cặp khóa và giá trị (key & value), với mỗi khóa là duy nhất trong map.
 </details>
