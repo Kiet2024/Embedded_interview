@@ -600,7 +600,7 @@ int main()
 
 <details>
     
-<summary> CLASS TRONG C++ </summary>
+<summary> CLASS (C++) </summary>
 
 Lớp (Class) có thể coi là bản thiết kế của các đối tượng (Object). Nó là một kiểu dữ liệu do người dùng định nghĩa, chứa các thành viên dữ liệu và các hàm thành viên của riêng nó.
 
@@ -626,12 +626,13 @@ int main ()
 </details>
 
 <details>
-<summary>PHẠM VI TRUY CẬP TRONG C++</summary>
+<summary>PHẠM VI TRUY CẬP TRONG CLASS (C++) </summary>
 
 Phạm vi truy cập là cách mà người lập trình quy định về quyền được truy xuất đến các thành phần của lớp. Trong C++ có `3 loại phạm vi chính` là: `private, protected, public`.
 
 ## Public
-Những member nằm trong phạm vi Public thì có thể truy cập bên trong hoặc bên ngoài class.
+Các thuộc tính và phương thức khai báo public thì có thể được truy cập trực tiếp thông qua instance của class đó. Các thuộc tính nên khai báo là public nếu bạn không có ràng buộc điều kiện trước khi gán (người dùng có thể thoải mái gán giá trị) hoặc bạn không cần xử lý trước khi trả về giá trị thuộc tính;
+Những member nằm trong phạm vi Public thì có thể truy cập bên trong và bên ngoài class.
 ```
 class SinhVien{
     public: 
@@ -656,10 +657,66 @@ int main ()
 ```
 
 ### Constructor
-`Constructor` phải được `khai báo ở đầu` trong phạm vi `Public` và phải `trùng tên với Class`. 
-`Constructor gồm ` có constructor `có tham số đầu` vào và `không có tham số đầu vào`.
+- `Constructor` phải được `khai báo ở đầu` trong phạm vi `Public` và phải `trùng tên với Class`. 
+- `Constructor gồm ` có constructor `có tham số đầu vào` và `không có tham số đầu vào`.
+- Khi khởi tạo 1 object thì Constructor được khởi tạo đầu tiên.
+
+```
+// VD: Constructor có tham số đầu vào
+class SinhVien{
+    public:
+        SinhVien(int tuoi = 7, int lop = 3) // constructor có tham số đầu vào có giá trị mặc định
+        void themThongTin(int tuoi, int lop); // method
+        void hienthi(); // method
+    private:
+        int tuoi; //property
+        int lop;
+
+};
+
+// đoạn chương trình này sẽ chạy đầu tiên
+SinhVien::SinhVien(int tuoi, int lop){
+    SinhVien::tuoi = tuoi;
+    SinhVien::lop  = lop;
+}
+
+int main()
+{
+    SinhVien sv(15, 9); // nhập giá trị tham số đầu vào 
+    // SinhVien sv; // nó sẽ lấy giá trị mặc định
+}
+
+```
+
+```
+// VD: Constructor không có tham số đầu vào
+class SinhVien{
+    public:
+        SinhVien() 
+        void themThongTin(int tuoi, int lop); // method
+        void hienthi(); // method
+    private:
+        int tuoi; //property
+        int lop;
+
+};
+
+// đoạn chương trình này sẽ chạy đầu tiên
+SinhVien::SinhVien(int tuoi, int lop){
+    SinhVien::tuoi = 10;
+    SinhVien::lop  = 4;
+}
+
+int main()
+{
+    SinhVien sv; // nó sẽ lấy giá trị mặc định
+}
+
+```
+
 
 ## Private
+Các thuộc tính private thường được sử dụng khi không mong muốn người khác có thể tùy ý gán giá trị hoặc muốn xử lý trước khi trả về giá trị.
 Những member nằm trong phạm vi Private thì chỉ có bên trong class mới truy cập được( dùng  method trong class để truy cập ) và những object sẽ không truy cập được. 
 
 ```
@@ -715,6 +772,136 @@ int main ()
 
 ```
 
-  
+## Protected
+Đối với protected, các phương thức và thuộc tính chỉ có thể truy cập qua các class kế thừa nó hoặc chính nó.
+
+``` 
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class DoiTuong{
+    public:
+        void setThongTin(string ten, int tuoi); // method
+        void hienthi(); // method
+    protected: // class con có thể sử dụng được
+        int TUOI; //property
+        string TEN;
+
+};
+
+void DoiTuong::hienthi(){
+    cout<<"Day la class DoiTuong\n";
+    cout<<"Ten:" <<TEN<<endl;
+    cout<<"Lop: " <<TUOI<<endl;
+       
+}
+
+void DoiTuong::setThongTin(string ten, int tuoi){
+   TEN = ten;
+   TUOI = tuoi;
+}
+
+// kế thừa class DoiTuong
+class SinhVien: public DoiTuong{ 
+    public:
+        // ghi đè class DoiTuong;
+        void setThongTin(string ten, int tuoi, int mssv);
+        void hienthi();
+    private:
+        int MSSV;
+ 
+};
+
+// Sau khi ghi đè cần phải set lại thông tin
+void SinhVien::setThongTin(string ten, int tuoi, int mssv){
+    TEN = ten;
+    TUOI = tuoi;
+    MSSV = mssv;
+
+};
+
+// Sau khi ghi đè cần phải set lại thông tin
+void SinhVien::hienthi(){
+    cout<<"Day la class SinhVien\n";
+    cout<<"Ten:" <<TEN<<endl;
+    cout<<"Lop: " <<TUOI<<endl;
+    cout<<"MSSV: "<<MSSV<<endl;
+       
+}
+
+int main()
+{
+   DoiTuong dt;
+   dt.setThongTin("Kiet", 17);
+   dt.hienthi();
+
+   SinhVien sv;
+   sv.setThongTin("Kiet", 23, 18029271);
+   sv.hienthi();
+   
+   
+   return 0;
+}
+```
     
 </details>
+
+<details>
+<summary> STATIC TRONG CLASS (C++) </summary>
+
+- `Static member` hay thành viên tĩnh trong class C++ cũng `tương tự` như với `static variable (biến tĩnh) trong function`. 
+
+- Đối với `function`, sau khi `thực hiện xong khối lệnh và thoát thì biến tĩnh vẫn sẽ không mất đi`.
+
+- Đối với `class`, `thành viên tĩnh` sẽ là `thuộc tính dùng chung cho tất cả các đối tượng của class đó`, cho `dù là không có đối tượng nào tồn tại`. Tức là bạn có thể khai báo nhiều object, `mỗi object các thuộc tính của nó đều khác nhau nhưng riêng static thì chỉ có một và static member tồn tại trong suốt chương trình cho dù có hay không có object nào của nó hay nói ngắn gọn là dùng chung một biến static`.
+
+```
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class SinhVien{
+    public:
+        string ten;
+        static int tuoi; // static trong class cần phải khởi tạo lần đầu
+};
+
+int SinhVien::tuoi; // khởi tạo lần đầu và đc tồn tại hết vòng đời chương trình
+
+int main()
+{
+    SinhVien sv1, sv2;
+
+    printf("Dia chi sv1: %p\n", &sv1);
+    printf("Dia chi sv1.ten: %p\n", &(sv1.ten));
+    printf("Dia chi sv1.tuoi: %p\n", &(sv1.tuoi));
+
+    sv1.tuoi = 10;
+
+    printf("Dia chi sv2: %p\n", &sv2);
+    printf("Dia chi sv2.ten: %p\n", &(sv2.ten));
+    printf("Dia chi sv2.tuoi: %p\n", &(sv2.tuoi));
+
+    sv2.tuoi = 30;
+
+    printf("%d \n",sv1.tuoi);
+
+    /* Result:
+        Dia chi sv1: 0061FF08
+        Dia chi sv1.ten: 0061FF08
+        Dia chi sv1.tuoi: 00407020
+        Dia chi sv2: 0061FEF0
+        Dia chi sv2.ten: 0061FEF0
+        Dia chi sv2.tuoi: 00407020
+        30
+    */
+}
+
+```
+Đoạn chương trình trên địa chỉ của sv1.tuoi, sv2.tuoi là cùng một địa chỉ nên khi gán `sv2.tuoi = 30` thì `static tuoi` trong class lúc này bằng `sv2.tuoi` chứ không phải bằng `sv1.tuoi` gán trước đó.
+
+</details>
+
