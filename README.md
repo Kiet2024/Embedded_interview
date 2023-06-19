@@ -1019,6 +1019,7 @@ var tong(var a, varB b){
 
 int main ()
 {
+    // Kiểu dữ liệu sẽ dựa vào input parameter đầu vào. 
     // var = kiểu int do 6 là kiểu int và result = 18  do kiểu trả về là var
     printf("Tong a va b: %f\n",tong(6, 12.3));
 
@@ -1027,5 +1028,5 @@ int main ()
 }
 
 ```
- Kiểu dữ liệu sẽ dựa vào input parameter đầu vào.  
+ 
 </details>
