@@ -907,5 +907,45 @@ int main()
 
 <details>
 <summary>OOP (C++)</summary>
-    
+
+## Inheritance (Tính kế thừa)
+- Trong lập trình hướng đối tượng có ý nghĩa, một class có thể kế thừa các thuộc tính của một class khác đã tồn tại trước đó.
+- `Có các tính kế thừa với: Public, Private, Protected`.
+- Khi một `class con` được tạo ra bởi việc `kế thừa thuộc tính của class cha` thì `class con gọi là subclass` và `class cha chính là superclass` trong C++.
+
+```
+class base 
+{
+	public: 
+		int x;
+	protected:
+		int y;
+	private:
+		int z;
+};
+
+class publicDerived: public base
+{
+	// x có kiểu public
+	// y có kiểu protected
+	// z không thể được truy xuất từ publicDerived
+};
+
+class protectedDerived: protected base
+{
+	// x có kiểu protected
+	// y có kiểu protected
+	// z không thể được truy xuất từ protectedDerived
+};
+
+class privateDerived: private base
+{
+	// x có kiểu private
+	// y có kiểu private
+	// z không thể được truy xuất từ privateDerived
+}
+
+```
+## Polymorphism (Tính đa hình)
+
 </details>
