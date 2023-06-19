@@ -1107,3 +1107,59 @@ namespace ConOngB{
 }
 ```
 </details>
+
+<details>
+<summary>VECTOR - LIST - MAP (C++)</summary>
+
+ ## Vector
+- Giống như là mảng (array), vector trong C++ là một đối tượng dùng để chứa các đối tượng khác, và các đối tượng được chứa này cũng được lưu trữ một cách liên tiếp trong vector.
+- Tuy nhiên, nếu như số lượng phần tử (size) của một mảng là cố định, thì ở vector, nó hoàn toàn có thể thay đổi trong suốt quá trình làm việc của chương trình.
+  ### Modifiers
+  
+	- `push_back()`: Hàm đẩy một phần tử vào vị trí sau cùng của vector. Nếu kiểu của đối tượng được truyền dưới dạng tham  	số trong push_back() không giống với kiểu của vector thì sẽ bị ném ra.
+ 
+	  VD:ten-vector.push_back(ten-cua-phan-tu);
+	- `assign()`: Nó gán một giá trị mới cho các phần tử vector bằng cách thay thế các giá trị cũ.
+   
+	  VD:ten-vector.assign(int size, int value);
+	- `pop_back()`: Hàm pop_back () được sử dụng để xóa đi phần tử cuối cùng một vector.
+	- `insert()`: Hàm này chèn các phần tử mới vào trước phần tử trước vị trí được trỏ bởi vòng lặp. Chúng ta cũng có thể 		chuyển một số đối số thứ ba, đếm số lần phần tử được chèn vào trước vị trí được trỏ.
+   	- `erase()`: Hàm được sử dụng để xóa các phần tử tùy theo vị trí vùng chứa
+	- `emplace()`: Nó mở rộng vùng chứa bằng cách chèn phần tử mới vào
+	- `emplace_back()`: Nó được sử dụng để chèn một phần tử mới vào vùng chứa vector, phần tử mới sẽ được thêm vào cuối 		vector
+	- `swap()`: Hàm được sử dụng để hoán đổi nội dung của một vector này với một vector khác cùng kiểu. Kích thước có thể 		khác nhau.
+	- `clear()`: Hàm được sử dụng để loại bỏ tất cả các phần tử của vùng chứa vector.
+```
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+
+int main()
+{
+    vector<int> array;
+    array.push_back(4);
+    array.push_back(8);
+    array.push_back(20);
+    array.push_back(15);
+
+    // chèn giá trị vị trí thứ 2
+    // array.begin() là vị trí thứ 0
+    array.insert(array.begin() + 2,77);
+    array.pop_back(); // xóa phần tử cuối cùng của mảng
+    // array.size() : trả về kích thước mảng
+    
+    
+    // biến auto xem data là giá trị gì để xác định kiểu dữ liệu của nó
+    for (auto item : array)
+    {
+        printf("%d\n",item);
+    }
+    
+}
+
+```
+
+## List
+</details>
