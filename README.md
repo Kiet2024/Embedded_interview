@@ -602,7 +602,7 @@ int main()
     
 <summary> CLASS (C++) </summary>
 
-Lớp (Class) có thể coi là bản thiết kế của các đối tượng (Object). Nó là một kiểu dữ liệu do người dùng định nghĩa, chứa các thành viên dữ liệu và các hàm thành viên của riêng nó.
+Lớp (Class) có thể coi là bản thiết kế của các đối tượng (Object). Nó là một kiểu dữ liệu do người dùng định nghĩa, chứa các thành viên dữ liệu và các hàm thành viên của riêng nó.Một class bao gồm các thành phần dữ liệu (thuộc tính hay property) và các phương thức (hàm thành phần hay method).
 
 ```
 // VD : Cấu trúc của 1 class đơn giản
@@ -620,7 +620,7 @@ int main ()
 }
 
 ```
-- Trong cấu trúc của class `biến` trong class gọi là `property`, `hàm` gọi là `method`.
+- `Biến` trong class gọi là `property`, `hàm` gọi là `method`.
 - Class khác với Struct vì `Struct không có biến, hàm và không khởi tạo giá trị mặc định`.
 
 </details>
@@ -631,7 +631,7 @@ int main ()
 Phạm vi truy cập là cách mà người lập trình quy định về quyền được truy xuất đến các thành phần của lớp. Trong C++ có `3 loại phạm vi chính` là: `private, protected, public`.
 
 ## Public
-Các thuộc tính và phương thức khai báo public thì có thể được truy cập trực tiếp thông qua instance của class đó. Các thuộc tính nên khai báo là public nếu bạn không có ràng buộc điều kiện trước khi gán (người dùng có thể thoải mái gán giá trị) hoặc bạn không cần xử lý trước khi trả về giá trị thuộc tính;
+Các thuộc tính và phương thức khai báo public thì có thể được truy cập trực tiếp thông qua instance của class đó. Các thuộc tính nên khai báo là public nếu không có ràng buộc điều kiện trước khi gán (người dùng có thể thoải mái gán giá trị) hoặc không cần xử lý trước khi trả về giá trị thuộc tính;
 Những member nằm trong phạm vi Public thì có thể truy cập bên trong và bên ngoài class.
 ```
 class SinhVien{
@@ -717,7 +717,7 @@ int main()
 
 ## Private
 Các thuộc tính private thường được sử dụng khi không mong muốn người khác có thể tùy ý gán giá trị hoặc muốn xử lý trước khi trả về giá trị.
-Những member nằm trong phạm vi Private thì chỉ có bên trong class mới truy cập được( dùng  method trong class để truy cập ) và những object sẽ không truy cập được. 
+Những member nằm trong phạm vi Private thì chỉ có bên trong class mới truy cập được( dùng  method trong class để truy cập ) và những object, tính kế thừa sẽ không truy cập được. 
 
 ```
 class SinhVien{
