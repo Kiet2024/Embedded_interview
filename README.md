@@ -597,3 +597,512 @@ int main()
 }
  ```
 </details>
+
+<details>
+    
+<summary> CLASS (C++) </summary>
+
+Lớp (Class) có thể coi là bản thiết kế của các đối tượng (Object). Nó là một kiểu dữ liệu do người dùng định nghĩa, chứa các thành viên dữ liệu và các hàm thành viên của riêng nó.Một class bao gồm các thành phần dữ liệu (thuộc tính hay property) và các phương thức (hàm thành phần hay method).
+
+```
+// VD : Cấu trúc của 1 class đơn giản
+class SinhVien{
+    public: // phạm vi truy cập
+// member có thể là biến, hàm, mảng
+        int tuoi; // property
+        int lop; // property
+        void hienThi(); // method
+};
+
+int main ()
+{
+    Sinhvien sv, sv2; // Sinh vien được gọi là class; sv, sv2 gọi là object và là 2 địa chỉ khác nhau.
+}
+
+```
+- `Biến` trong class gọi là `property`, `hàm` gọi là `method`.
+- Class khác với Struct vì `Struct không có biến, hàm và không khởi tạo giá trị mặc định`.
+
+</details>
+
+<details>
+<summary>PHẠM VI TRUY CẬP TRONG CLASS (C++) </summary>
+
+Phạm vi truy cập là cách mà người lập trình quy định về quyền được truy xuất đến các thành phần của lớp. Trong C++ có `3 loại phạm vi chính` là: `private, protected, public`.
+
+## Public
+Các thuộc tính và phương thức khai báo public thì có thể được truy cập trực tiếp thông qua instance của class đó. Các thuộc tính nên khai báo là public nếu không có ràng buộc điều kiện trước khi gán (người dùng có thể thoải mái gán giá trị) hoặc không cần xử lý trước khi trả về giá trị thuộc tính;
+Những member nằm trong phạm vi Public thì có thể truy cập bên trong và bên ngoài class.
+```
+class SinhVien{
+    public: 
+// member có thể là biến, hàm, mảng
+        int tuoi; // property
+        int lop; // property
+        void hienThi(); // method
+};
+void SinhVien::hienthi(){ // truy cập bên trong class
+    cout<<"Tuoi:" <<tuoi<<endl; 
+    cout<<"Lop: " <<lop<<endl;
+}
+
+int main ()
+{
+    Sinhvien sv, sv2; // Sinh vien được gọi là class; sv, sv2 gọi là object và là 2 địa chỉ khác nhau.
+    sv.tuoi = 5; // truy cập bên ngoài class
+    sv.lop = 1;
+    // Result : Tuoi: 5 , Lop: 1
+}
+
+```
+
+### Constructor
+- `Constructor` phải được `khai báo ở đầu` trong phạm vi `Public` và phải `trùng tên với Class`. 
+- `Constructor gồm ` có constructor `có tham số đầu vào` và `không có tham số đầu vào`.
+- Khi khởi tạo 1 object thì Constructor được khởi tạo đầu tiên.
+
+```
+// VD: Constructor có tham số đầu vào
+class SinhVien{
+    public:
+        SinhVien(int tuoi = 7, int lop = 3) // constructor có tham số đầu vào có giá trị mặc định
+        void themThongTin(int tuoi, int lop); // method
+        void hienthi(); // method
+    private:
+        int tuoi; //property
+        int lop;
+
+};
+
+// đoạn chương trình này sẽ chạy đầu tiên
+SinhVien::SinhVien(int tuoi, int lop){
+    SinhVien::tuoi = tuoi;
+    SinhVien::lop  = lop;
+}
+
+int main()
+{
+    SinhVien sv(15, 9); // nhập giá trị tham số đầu vào 
+    // SinhVien sv; // nó sẽ lấy giá trị mặc định
+}
+
+```
+
+```
+// VD: Constructor không có tham số đầu vào
+class SinhVien{
+    public:
+        SinhVien() 
+        void themThongTin(int tuoi, int lop); // method
+        void hienthi(); // method
+    private:
+        int tuoi; //property
+        int lop;
+
+};
+
+// đoạn chương trình này sẽ chạy đầu tiên
+SinhVien::SinhVien(int tuoi, int lop){
+    SinhVien::tuoi = 10;
+    SinhVien::lop  = 4;
+}
+
+int main()
+{
+    SinhVien sv; // nó sẽ lấy giá trị mặc định
+}
+
+```
+
+
+## Private
+Các thuộc tính private thường được sử dụng khi không mong muốn người khác có thể tùy ý gán giá trị hoặc muốn xử lý trước khi trả về giá trị.
+Những member nằm trong phạm vi Private thì chỉ có bên trong class mới truy cập được( dùng  method trong class để truy cập ) và những object, tính kế thừa sẽ không truy cập được. 
+
+```
+class SinhVien{
+    public:
+        void hienthi(); // method
+    private:
+        int tuoi = 6; //property
+        int lop = 2;
+
+};
+
+int main ()
+{
+    SinhVien sv; // object chỉ truy cập phạm vi Public
+    sv.hienthi(); // result tuoi = 6, lop = 2 
+    sv.tuoi = 5; // báo lỗi
+    sv.lop = 1; // báo lỗi
+}
+
+```
+- Đoạn chương trình trên sẽ báo lỗi do 2 property `tuoi` và `lop` nằm ở phạm vi `Private` nên Object không thể truy cập được.
+- Để có thể `truy cập vào phạm vị Private` thì phải `dùng các method trong class đó` để truy cập .
+```
+class SinhVien{
+    public:
+        void hienthi(); // method
+        void themThongTin(int tuoi, int lop); // method
+    private:
+        int tuoi; //property
+        int lop;
+
+};
+
+void SinhVien::hienthi(){ // dùng method để truy cập vào class sinh viên
+    cout<<"Tuoi:" <<tuoi<<endl; // nên có thể truy cập vào property ở Private
+    cout<<"Lop: " <<lop<<endl;
+}
+
+void SinhVien::themThongTin(int tuoi, int lop){ // dùng method để truy cập vào class sinh viên
+   
+    SinhVien::tuoi = tuoi;   // do đặt 2 'tuoi' và 'lop' trùng tên nhau nên muốn gán giá trị đầu vào
+    SinhVien::lop  = lop;    //  Cần trỏ đến property 'tuoi' bằng cách SinhVien::tuoi = giá trị đầu vào
+ }
+
+int main ()
+{
+    SinhVien sv; // object chỉ truy cập phạm vi Public
+    sv.themThongTin(10, 5);
+    sv.hienthi();
+
+}
+
+```
+
+## Protected
+Đối với protected, các phương thức và thuộc tính chỉ có thể truy cập qua các class kế thừa nó hoặc chính nó.
+
+``` 
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class DoiTuong{
+    public:
+        void setThongTin(string ten, int tuoi); // method
+        void hienthi(); // method
+    protected: // class con có thể sử dụng được
+        int TUOI; //property
+        string TEN;
+
+};
+
+void DoiTuong::hienthi(){
+    cout<<"Day la class DoiTuong\n";
+    cout<<"Ten:" <<TEN<<endl;
+    cout<<"Lop: " <<TUOI<<endl;
+       
+}
+
+void DoiTuong::setThongTin(string ten, int tuoi){
+   TEN = ten;
+   TUOI = tuoi;
+}
+
+// kế thừa class DoiTuong
+class SinhVien: public DoiTuong{ 
+    public:
+        // ghi đè class DoiTuong;
+        void setThongTin(string ten, int tuoi, int mssv);
+        void hienthi();
+    private:
+        int MSSV;
+ 
+};
+
+// Sau khi ghi đè cần phải set lại thông tin
+void SinhVien::setThongTin(string ten, int tuoi, int mssv){
+    TEN = ten;
+    TUOI = tuoi;
+    MSSV = mssv;
+
+};
+
+// Sau khi ghi đè cần phải set lại thông tin
+void SinhVien::hienthi(){
+    cout<<"Day la class SinhVien\n";
+    cout<<"Ten:" <<TEN<<endl;
+    cout<<"Lop: " <<TUOI<<endl;
+    cout<<"MSSV: "<<MSSV<<endl;
+       
+}
+
+int main()
+{
+   DoiTuong dt;
+   dt.setThongTin("Kiet", 17);
+   dt.hienthi();
+
+   SinhVien sv;
+   sv.setThongTin("Kiet", 23, 18029271);
+   sv.hienthi();
+   
+   
+   return 0;
+}
+```
+    
+</details>
+
+<details>
+<summary> STATIC TRONG CLASS (C++) </summary>
+
+- `Static member` hay thành viên tĩnh trong class C++ cũng `tương tự` như với `static variable (biến tĩnh) trong function`. 
+
+- Đối với `function`, sau khi `thực hiện xong khối lệnh và thoát thì biến tĩnh vẫn sẽ không mất đi`.
+
+- Đối với `class`, `thành viên tĩnh` sẽ là `thuộc tính dùng chung cho tất cả các đối tượng của class đó`, cho `dù là không có đối tượng nào tồn tại`. Có thể khai báo nhiều object, mỗi object các thuộc tính của nó đều khác nhau nhưng riêng static thì chỉ có một và static member tồn tại trong suốt chương trình cho dù có hay không có object nào của nó hay nói ngắn gọn là dùng chung một biến static.
+
+```
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class SinhVien{
+    public:
+        string ten;
+        static int tuoi; // static trong class cần phải khởi tạo lần đầu
+};
+
+int SinhVien::tuoi; // khởi tạo lần đầu và đc tồn tại hết vòng đời chương trình
+
+int main()
+{
+    SinhVien sv1, sv2;
+
+    printf("Dia chi sv1: %p\n", &sv1);
+    printf("Dia chi sv1.ten: %p\n", &(sv1.ten));
+    printf("Dia chi sv1.tuoi: %p\n", &(sv1.tuoi));
+
+    sv1.tuoi = 10;
+
+    printf("Dia chi sv2: %p\n", &sv2);
+    printf("Dia chi sv2.ten: %p\n", &(sv2.ten));
+    printf("Dia chi sv2.tuoi: %p\n", &(sv2.tuoi));
+
+    sv2.tuoi = 30;
+
+    printf("%d \n",sv1.tuoi);
+
+    /* Result:
+        Dia chi sv1: 0061FF08
+        Dia chi sv1.ten: 0061FF08
+        Dia chi sv1.tuoi: 00407020
+        Dia chi sv2: 0061FEF0
+        Dia chi sv2.ten: 0061FEF0
+        Dia chi sv2.tuoi: 00407020
+        30
+    */
+}
+
+```
+Đoạn chương trình trên địa chỉ của sv1.tuoi, sv2.tuoi là cùng một địa chỉ nên khi gán `sv2.tuoi = 30` thì `static tuoi` trong class lúc này bằng `sv2.tuoi` chứ không phải bằng `sv1.tuoi` gán trước đó.
+
+</details>
+
+<details>
+<summary>OOP (C++)</summary>
+
+## Inheritance (Tính kế thừa)
+- Trong lập trình hướng đối tượng có ý nghĩa, một class có thể kế thừa các thuộc tính của một class khác đã tồn tại trước đó.
+- `Có các tính kế thừa với: Public, Private, Protected`.
+- Khi một `class con` được tạo ra bởi việc `kế thừa thuộc tính của class cha` thì `class con gọi là subclass` và `class cha chính là superclass` trong C++.
+
+```
+class base 
+{
+	public: 
+		int x;
+	protected:
+		int y;
+	private:
+		int z;
+};
+
+class publicDerived: public base
+{
+	// x có kiểu public
+	// y có kiểu protected
+	// z không thể được truy xuất từ publicDerived
+};
+
+class protectedDerived: protected base
+{
+	// x có kiểu protected
+	// y có kiểu protected
+	// z không thể được truy xuất từ protectedDerived
+};
+
+class privateDerived: private base
+{
+	// x có kiểu private
+	// y có kiểu private
+	// z không thể được truy xuất từ privateDerived
+}
+
+```
+## Polymorphism (Tính đa hình)
+Trong lập trình hướng đối tượng là một khả năng mà một phương thức trong class có thể đưa ra các kết quả hoàn toàn khác nhau, tùy thuộc vào dữ liệu được xử lý.
+Tính đa hình trong class cho phép sử dụng các hàm trùng tên với nhau nhưng kiểu trả về và các input paramater của nó khác nhau.
+```
+class ToanHoc{
+    public:
+        void tong(int a, int b);
+        void tong(int a, int b, int c);
+        int tong(int a, double b);
+};
+
+void ToanHoc::tong(int a, int b){
+    printf("Tong a va b: %d\n", a + b);
+}
+
+void ToanHoc::tong(int a, int b, int c){
+    printf("Tong a, b va c: %d\n", a + b + c);
+}
+
+int ToanHoc::tong(int a, double b){
+    return a + (int)b;
+}
+
+int main ()
+{
+    ToanHoc th;
+    th.tong(7, 8);
+    th.tong(2, 3, 4);
+    printf("Tong a va b: %d\n",th.tong(7, 12.3));
+}
+
+```
+## Abstraction (Tính trừu tượng)
+Trong lập trình hướng đối tượng là một `khả năng mà chương trình có thể bỏ qua sự phức tạp bằng cách tập trung vào cốt lõi của thông tin cần xử lý`.
+Điều đó có nghĩa, bạn có thể `xử lý một đối tượng` bằng cách `gọi tên một phương thức` và `thu về kết quả xử lý`, mà `không cần biết làm cách nào đối tượng đó được các thao tác trong class`.
+
+```
+/*
+     Những tính toán phức tạp để có thể giải ra được bài toán,... sẽ nằm ở phần private(bên trong)
+     Còn cái đơn giản như nhập và xuất dữ liệu ở public (phía người dùng hay bên ngoài).Để người dùng không thể
+     truy cập vào các chương trình tính toán phức tạp bên trong. 
+
+*/
+class ToanHoc{
+    public:
+        void nhapABC();
+        void getX1X2();
+    private:
+        int getDelta();
+};
+
+```
+
+## Encapsulation (Tính đóng gói)
+- Trong lập trình hướng đối tượng có ý nghĩa `không cho phép người sử dụng các đối tượng thay đổi trạng thái nội tại của một đối tượng`, mà chỉ có phương thức nội tại của đối tượng có thể thay đổi chính nó.
+- Điều đó có nghĩa, dữ liệu và thông tin sẽ được đóng gói lại, giúp các tác động bên ngoài một đối tượng không thể làm thay đổi đối tượng đó, nên sẽ đảm bảo tính toàn vẹn của đối tượng, cũng như giúp dấu đi các dữ liệu thông tin cần được che giấu.
+
+```
+/*
+    Do mình thiết kế cho người dùng sử dụng nên không thể cho người dùng truy cập để thay đổi các giá trị bên trong.
+    Tính đóng gói là những Property phải khai báo ở private để lấy giá trị hay gán trị phải thông qua Method
+*/
+class ToanHoc{
+    public:
+        void nhapABC(); // method
+        void getX1X2();
+    private:
+        int A; // property
+        int B;
+        int C;
+        int X1;
+        int X2;
+        int getDelta();
+};
+
+
+
+```
+
+
+</details>
+
+<details>
+<summary> TEMPLATE (C++)</summary>
+
+- Template (khuôn mẫu) là một từ khóa trong C++, và là một kiểu dữ liệu trừu tượng tổng quát hóa cho các kiểu dữ liệu int, float, double, bool...
+- Template trong C++ có 2 loại đó là `function template` & `class template`.
+- Template `giúp người lập trình` `định nghĩa tổng quát cho hàm` và lớp `thay vì phải nạp chồng (overloading) cho từng hàm hay phương thức` với những kiểu dữ liệu khác nhau.
+- Khi mà `những hàm tương tự nhau` nhưng và nó `khác nhau về input parameter hay kiểu trả về` có thể `dùng Template`.
+- `Template là tính đa hình trong OOP`.
+```
+template<typename var, typename varB>
+var tong(var a, varB b){
+    return var(a+b);
+}
+
+int main ()
+{
+    // Kiểu dữ liệu sẽ dựa vào input parameter đầu vào. 
+    // var = kiểu int do 6 là kiểu int và result = 18  do kiểu trả về là var
+    printf("Tong a va b: %f\n",tong(6, 12.3));
+
+    printf("Tong a va b: %f\n",tong(6, 7));
+    
+}
+
+```
+ 
+</details>
+
+<details>
+
+<Summary> NAMESPACE (C++)</Summary>
+`Namespace` là từ khóa trong C++ được sử dụng để định nghĩa một phạm vi `nhằm mục đích phân biệt các hàm, lớp, biến,... cùng tên trong các thư viện khác nhau`.
+
+```
+#include <iostream>
+
+namespace ConOngA{
+    int A = 10;
+    int B = 10;
+    class ToanHoc{
+        public:
+            void nhapABC(); // method
+            void getX1X2();
+        private:
+            int A; // property
+            int B;
+            int C;
+            int X1;
+            int X2;
+            int getDelta();
+    };
+}
+
+namespace ConOngB{
+    int A = 20;
+}
+/*
+    Chỉ được sử dụng khi chỉ có 1 namespace và các biến trong namespace này 
+    không trùng với namspace khác.
+*/
+using namespace ConOngA;  
+//using namespace ConOngB; // do nó trùng biến A nên khi gọi A nó sẽ không biết lấy namspace nào
+int main()
+{
+    printf("A = %d\n", A);
+    printf("A = %d\n",ConOngB::A);
+}
+
+ // Resuldt : A = 10, A = 20
+```
+- `Lưu ý: trong cùng một Namspace không thể trùng tên biến, hàm, class,... và có thể trùng nếu nó nằm ở một Namspace khác`.
+```
+namespace ConOngB{
+    int A = 20;
+    int A = 10; // báo lỗi
+}
+```
+</details>
