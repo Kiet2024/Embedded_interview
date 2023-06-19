@@ -985,7 +985,7 @@ Trong lập trình hướng đối tượng là một `khả năng mà chương 
 ```
 /*
      Những tính toán phức tạp để có thể giải ra được bài toán,... sẽ nằm ở phần private(bên trong)
-     Còn cái đơn giản như nhập và xuất dữ liệu ở public( phía người dùng hay bên ngoài).Để người dùng không thể
+     Còn cái đơn giản như nhập và xuất dữ liệu ở public (phía người dùng hay bên ngoài).Để người dùng không thể
      truy cập vào các chương trình tính toán phức tạp bên trong. 
 
 */
@@ -999,6 +999,31 @@ class ToanHoc{
 
 ```
 
+## Encapsulation (Tính đóng gói)
+- Trong lập trình hướng đối tượng có ý nghĩa `không cho phép người sử dụng các đối tượng thay đổi trạng thái nội tại của một đối tượng`, mà chỉ có phương thức nội tại của đối tượng có thể thay đổi chính nó.
+- Điều đó có nghĩa, dữ liệu và thông tin sẽ được đóng gói lại, giúp các tác động bên ngoài một đối tượng không thể làm thay đổi đối tượng đó, nên sẽ đảm bảo tính toàn vẹn của đối tượng, cũng như giúp dấu đi các dữ liệu thông tin cần được che giấu.
+
+```
+/*
+    Do mình thiết kế cho người dùng sử dụng nên không thể cho người dùng truy cập để thay đổi các giá trị bên trong.
+    Tính đóng gói là những Property phải khai báo ở private để lấy giá trị hay gán trị phải thông qua Method
+*/
+class ToanHoc{
+    public:
+        void nhapABC(); // method
+        void getX1X2();
+    private:
+        int A; // property
+        int B;
+        int C;
+        int X1;
+        int X2;
+        int getDelta();
+};
+
+
+
+```
 
 
 </details>
