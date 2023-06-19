@@ -29,7 +29,7 @@ void DoiTuong::setThongTin(string ten, int tuoi){
 // kế thừa class DoiTuong
 class SinhVien: public DoiTuong{ 
     public:
-        // ghi đè lên class DoiTuong;
+        // ghi đè  class DoiTuong;
         void setThongTin(string ten, int tuoi, int mssv);
         void hienthi();
     private:
@@ -37,6 +37,7 @@ class SinhVien: public DoiTuong{
  
 };
 
+// Sau khi ghi đè cần phải set lại thông tin
 void SinhVien::setThongTin(string ten, int tuoi, int mssv){
     TEN = ten;
     TUOI = tuoi;
@@ -44,6 +45,7 @@ void SinhVien::setThongTin(string ten, int tuoi, int mssv){
 
 };
 
+// Sau khi ghi đè cần phải set lại thông tin
 void SinhVien::hienthi(){
     cout<<"Day la class SinhVien\n";
     cout<<"Ten:" <<TEN<<endl;
@@ -55,7 +57,7 @@ void SinhVien::hienthi(){
 int main()
 {
    DoiTuong dt;
-   dt.setThongTin("Kiet", 17);
+   dt.setThongTin("Kiet", 23);
    dt.hienthi();
 
    SinhVien sv;
