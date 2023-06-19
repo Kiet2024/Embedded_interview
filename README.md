@@ -947,5 +947,85 @@ class privateDerived: private base
 
 ```
 ## Polymorphism (Tính đa hình)
+Trong lập trình hướng đối tượng là một khả năng mà một phương thức trong class có thể đưa ra các kết quả hoàn toàn khác nhau, tùy thuộc vào dữ liệu được xử lý.
+Tính đa hình trong class cho phép sử dụng các hàm trùng tên với nhau nhưng kiểu trả về và các input paramater của nó khác nhau.
+```
+class ToanHoc{
+    public:
+        void tong(int a, int b);
+        void tong(int a, int b, int c);
+        int tong(int a, double b);
+};
 
+void ToanHoc::tong(int a, int b){
+    printf("Tong a va b: %d\n", a + b);
+}
+
+void ToanHoc::tong(int a, int b, int c){
+    printf("Tong a, b va c: %d\n", a + b + c);
+}
+
+int ToanHoc::tong(int a, double b){
+    return a + (int)b;
+}
+
+int main ()
+{
+    ToanHoc th;
+    th.tong(7, 8);
+    th.tong(2, 3, 4);
+    printf("Tong a va b: %d\n",th.tong(7, 12.3));
+}
+
+```
+## Abstraction (Tính trừu tượng)
+Trong lập trình hướng đối tượng là một `khả năng mà chương trình có thể bỏ qua sự phức tạp bằng cách tập trung vào cốt lõi của thông tin cần xử lý`.
+Điều đó có nghĩa, bạn có thể `xử lý một đối tượng` bằng cách `gọi tên một phương thức` và `thu về kết quả xử lý`, mà `không cần biết làm cách nào đối tượng đó được các thao tác trong class`.
+
+```
+/*
+     Những tính toán phức tạp để có thể giải ra được bài toán,... sẽ nằm ở phần private(bên trong)
+     Còn cái đơn giản như nhập và xuất dữ liệu ở public( phía người dùng hay bên ngoài).Để người dùng không thể
+     truy cập vào các chương trình tính toán phức tạp bên trong. 
+
+*/
+class ToanHoc{
+    public:
+        void nhapABC();
+        void getX1X2();
+    private:
+        int getDelta();
+};
+
+```
+
+
+
+</details>
+
+<details>
+<summary> TEMPLATE (C++)</summary>
+
+- Template (khuôn mẫu) là một từ khóa trong C++, và là một kiểu dữ liệu trừu tượng tổng quát hóa cho các kiểu dữ liệu int, float, double, bool...
+- Template trong C++ có 2 loại đó là `function template` & `class template`.
+- Template `giúp người lập trình` `định nghĩa tổng quát cho hàm` và lớp `thay vì phải nạp chồng (overloading) cho từng hàm hay phương thức` với những kiểu dữ liệu khác nhau.
+- Khi mà `những hàm tương tự nhau` nhưng và nó `khác nhau về input parameter hay kiểu trả về` có thể `dùng Template`.
+- `Template là tính đa hình trong OOP`.
+```
+template<typename var, typename varB>
+var tong(var a, varB b){
+    return var(a+b);
+}
+
+int main ()
+{
+    // var = kiểu int do 6 là kiểu int và result = 18  do kiểu trả về là var
+    printf("Tong a va b: %f\n",tong(6, 12.3));
+
+    printf("Tong a va b: %f\n",tong(6, 7));
+    
+}
+
+```
+ Kiểu dữ liệu sẽ dựa vào input parameter đầu vào.  
 </details>
