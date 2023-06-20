@@ -1,6 +1,11 @@
 <details>
 
-<summary>COMPILER</summary>
+ <summary><h1> Tổng quát về C </h1></summary>
+
+
+<details>
+
+<summary><COMPILER</summary>
 Compiler giống như 1 phần mềm dùng để chuyển ngôn ngữ bậc cao sang ngôn ngữ máy, đối với một ngôn ngữ lập trình (c/c++, python, java,...) thì có nhiều compiler.
     
 ![image](https://github.com/Kiet2024/Embedded_interview/assets/133784431/21423361-d502-41ca-9a00-9ac64500703c)
@@ -596,6 +601,8 @@ int main()
     */
 }
  ```
+</details>
+
 </details>
 
 <details>
