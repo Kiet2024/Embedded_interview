@@ -1059,6 +1059,7 @@ int main ()
 <details>
 
 <Summary> NAMESPACE (C++)</Summary>
+
 `Namespace` là từ khóa trong C++ được sử dụng để định nghĩa một phạm vi `nhằm mục đích phân biệt các hàm, lớp, biến,... cùng tên trong các thư viện khác nhau`.
 
 ```
@@ -1105,4 +1106,73 @@ namespace ConOngB{
     int A = 10; // báo lỗi
 }
 ```
+</details>
+
+<details>
+<summary>VECTOR - LINKED LIST - MAP (C++)</summary>
+
+ ## Vector
+- Giống như là mảng (array), vector trong C++ là một đối tượng dùng để chứa các đối tượng khác, và các đối tượng được chứa này cũng được lưu trữ một cách liên tiếp trong vector.
+- Tuy nhiên, nếu như số lượng phần tử (size) của một mảng là cố định, thì ở vector, nó hoàn toàn có thể thay đổi trong suốt quá trình làm việc của chương trình.
+  ### Modifiers
+  
+	- `push_back()`: Hàm đẩy một phần tử vào vị trí sau cùng của vector. Nếu kiểu của đối tượng được truyền dưới dạng tham  	số trong push_back() không giống với kiểu của vector thì sẽ bị ném ra.
+ 
+	  VD:ten-vector.push_back(ten-cua-phan-tu);
+	- `assign()`: Nó gán một giá trị mới cho các phần tử vector bằng cách thay thế các giá trị cũ.
+   
+	  VD:ten-vector.assign(int size, int value);
+	- `pop_back()`: Hàm pop_back () được sử dụng để xóa đi phần tử cuối cùng một vector.
+	- `insert()`: Hàm này chèn các phần tử mới vào trước phần tử trước vị trí được trỏ bởi vòng lặp. Chúng ta cũng có thể 		chuyển một số đối số thứ ba, đếm số lần phần tử được chèn vào trước vị trí được trỏ.
+   	- `erase()`: Hàm được sử dụng để xóa các phần tử tùy theo vị trí vùng chứa
+	- `emplace()`: Nó mở rộng vùng chứa bằng cách chèn phần tử mới vào
+	- `emplace_back()`: Nó được sử dụng để chèn một phần tử mới vào vùng chứa vector, phần tử mới sẽ được thêm vào cuối 		vector
+	- `swap()`: Hàm được sử dụng để hoán đổi nội dung của một vector này với một vector khác cùng kiểu. Kích thước có thể 		khác nhau.
+	- `clear()`: Hàm được sử dụng để loại bỏ tất cả các phần tử của vùng chứa vector.
+```
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+
+int main()
+{
+    vector<int> array;
+    array.push_back(4);
+    array.push_back(8);
+    array.push_back(20);
+    array.push_back(15);
+
+    // chèn giá trị vị trí thứ 2
+    // array.begin() là vị trí thứ 0
+    array.insert(array.begin() + 2,77);
+    array.pop_back(); // xóa phần tử cuối cùng của mảng
+    // array.size() : trả về kích thước mảng
+    
+    
+    // biến auto xem data là giá trị gì để xác định kiểu dữ liệu của nó
+    for (auto item : array)
+    {
+        printf("%d\n",item);
+    }
+    
+}
+
+```
+
+## Linked List
+
+`Linked List là một cấu trúc dữ liệu độn`g, nó là một danh sách mà mỗi phần tử đều liên kết với phần tử đúng sau nó trong danh sách. Mỗi phần tử (được gọi là một node hay nút) trong danh sách liên kết đơn là `một cấu trúc có hai thành phần`:
+	- Thành phần dữ liệu: lưu thông tin về bản thân phần tử đó.
+	- Thành phần liên kết: lưu địa chỉ phần tử đứng sau trong danh sách, nếu phần tử đó là phần tử cuối cùng thì thành phần này bằng NULL.
+Linked List là một cấu trúc dữ liệu động, được tạo nên nhờ việc cấp phát động nên nó có `một số đặc điểm sau đây`:
+	- Được cấp phát bộ nhớ khi chạy chương trình.
+	- Có thể thay đổi kích thước qua việc thêm, xóa phần tử.
+	- Kích thước tối đa phụ thuộc vào bộ nhớ khả dụng của RAM.
+	- Các phần tử được lưu trữ ngẫu nhiên (không liên tiếp) trong RAM.
+
+ ## Map
+
+Map trong C++ là một tập hợp các phần tử được sắp xếp theo thứ tự cụ thể, mà mỗi phần tử trong đó được hình thành bởi sự kết hợp của một cặp khóa và giá trị (key & value), với mỗi khóa là duy nhất trong map.
 </details>
