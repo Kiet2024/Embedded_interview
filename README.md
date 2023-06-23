@@ -1,6 +1,12 @@
 <details>
 
-<summary>COMPILER</summary>
+ <summary><H1> 📖Tổng quát về C </H1></summary>
+
+
+<details>
+
+<summary> <H3> 🏷️COMPILER </H3> </summary>
+	
 Compiler giống như 1 phần mềm dùng để chuyển ngôn ngữ bậc cao sang ngôn ngữ máy, đối với một ngôn ngữ lập trình (c/c++, python, java,...) thì có nhiều compiler.
     
 ![image](https://github.com/Kiet2024/Embedded_interview/assets/133784431/21423361-d502-41ca-9a00-9ac64500703c)
@@ -18,7 +24,7 @@ Bản chất file *.exe giống như file zip hay rar.
 </details>
 
 <details>
-<summary>PHÂN VÙNG NHỚ</summary>
+<summary> <H3> 🏷️PHÂN VÙNG NHỚ </H3> </summary>
 <img width="169" alt="image" src="https://github.com/Kiet2024/Embedded_interview/assets/133784431/7b238944-eb43-4d35-a0dd-2e94ad70a421">
 
 ## Phân vùng Text:
@@ -137,7 +143,7 @@ Dia chi arr: 00AD2F20
 </details>
     
  <details>
- <summary>MACRO - FUNCTION - INLINE</summary>
+ <summary> <H3>🏷️MACRO - FUNCTION - INLINE </H3> </summary>
      
  ## Macro 
  - Macro không phải là hàm, cũng không phải là biến mà nó chỉ là 1 định nghĩa.
@@ -210,7 +216,9 @@ Sau khi PC chạy xong hàm A, lúc này nó sẽ vào Stack Pointer để lấy
     
     
 <details>
-<summary>TOÁN TỬ BITWISE</summary>
+
+<summary> <H3> 🏷️TOÁN TỬ BITWISE </H3> </summary>
+
     
  ## Toán tử AND
  <img width="173" alt="image" src="https://github.com/Kiet2024/Embedded_interview/assets/133784431/131b91c7-7404-42a1-89d4-00713f196a51">
@@ -227,7 +235,7 @@ Sau khi PC chạy xong hàm A, lúc này nó sẽ vào Stack Pointer để lấy
 </details>
 
 <details>
-<summary>THAO TÁC BIT</summary>
+<summary> <H3> 🏷️THAO TÁC BIT </H3> </summary>
 
 <img width="355" alt="image" src="https://github.com/Kiet2024/Embedded_interview/assets/133784431/02e222c1-e668-4939-a6ea-dd05e7eb746e">
 
@@ -251,7 +259,8 @@ printf("%s",(((bit & (1<<2)) !=0)?"true":"false"));
 </details>   
  
 <details>
-<summary>TYPEDEF</summary>
+
+<summary> <H3> 🏷️TYPDEFT </H3> </summary>
     
 Typedef được sử dụng để tạo tên mới cho kiểu dữ liệu. 
 ```
@@ -262,7 +271,7 @@ u8 x = 10; // u8 bản chất nó là kiểu uint8_t
     
     
 <details>
-<summary>STRUCT - UNION</summary>
+<summary> <H3> 🏷️STRUCT - UNION </H3> </summary>
  
 ## Struct
  ### Size của Struct
@@ -364,7 +373,7 @@ Về mặt ý nghĩa, struct và union cơ bản giống nhau. Tuy nhiên, về 
 </details>
 
 <details>
-    <summary>EXTERN - STATIC</summary>
+    <summary> <H3> 🏷️EXTERN - STATIC </H3> </summary>
     
  ## Extern
 
@@ -458,7 +467,7 @@ int main()
 </details>
     
 <details>
-<summary>POINTER</summary>
+<summary> <H3> 🏷️POINTER </H3> </summary>
  
 ## Null Pointer
 - Con trỏ null là con trỏ có giá trị và địa chỉ bằng 0.
@@ -598,9 +607,18 @@ int main()
  ```
 </details>
 
+
+
+</details>
+
+
+<details>
+
+ <summary><H1> 📖Tổng quát về C++ </H1></summary>
+
 <details>
     
-<summary> CLASS (C++) </summary>
+<summary> <H3> 🏷️CLASS </H3> </summary>
 
 Lớp (Class) có thể coi là bản thiết kế của các đối tượng (Object). Nó là một kiểu dữ liệu do người dùng định nghĩa, chứa các thành viên dữ liệu và các hàm thành viên của riêng nó.Một class bao gồm các thành phần dữ liệu (thuộc tính hay property) và các phương thức (hàm thành phần hay method).
 
@@ -626,7 +644,7 @@ int main ()
 </details>
 
 <details>
-<summary>PHẠM VI TRUY CẬP TRONG CLASS (C++) </summary>
+<summary> <H3> 🏷️PHẠM VI TRUY CẬP TRONG CLASS </H3> </summary>
 
 Phạm vi truy cập là cách mà người lập trình quy định về quyền được truy xuất đến các thành phần của lớp. Trong C++ có `3 loại phạm vi chính` là: `private, protected, public`.
 
@@ -849,7 +867,7 @@ int main()
 </details>
 
 <details>
-<summary> STATIC TRONG CLASS (C++) </summary>
+<summary> <H3> 🏷️STATIC TRONG CLASS </H3> </summary>
 
 - `Static member` hay thành viên tĩnh trong class C++ cũng `tương tự` như với `static variable (biến tĩnh) trong function`. 
 
@@ -906,7 +924,7 @@ int main()
 </details>
 
 <details>
-<summary>OOP (C++)</summary>
+<summary> <H3> 🏷️OOP </H3> </summary>
 
 ## Inheritance (Tính kế thừa)
 - Trong lập trình hướng đối tượng có ý nghĩa, một class có thể kế thừa các thuộc tính của một class khác đã tồn tại trước đó.
@@ -1029,7 +1047,7 @@ class ToanHoc{
 </details>
 
 <details>
-<summary> TEMPLATE (C++)</summary>
+<summary> <H3> 🏷️TEMPLATE </H3> </summary>
 
 - Template (khuôn mẫu) là một từ khóa trong C++, và là một kiểu dữ liệu trừu tượng tổng quát hóa cho các kiểu dữ liệu int, float, double, bool...
 - Template trong C++ có 2 loại đó là `function template` & `class template`.
@@ -1058,7 +1076,7 @@ int main ()
 
 <details>
 
-<Summary> NAMESPACE (C++)</Summary>
+<summary> <H3> 🏷️NAMESPACE </H3> </summary>
 
 `Namespace` là từ khóa trong C++ được sử dụng để định nghĩa một phạm vi `nhằm mục đích phân biệt các hàm, lớp, biến,... cùng tên trong các thư viện khác nhau`.
 
@@ -1109,7 +1127,7 @@ namespace ConOngB{
 </details>
 
 <details>
-<summary>VECTOR - LINKED LIST - MAP (C++)</summary>
+<summary> <H3> 🏷️VECTOR - LINKED LIST - MAP </H3> </summary>
 
  ## Vector
 - Giống như là mảng (array), vector trong C++ là một đối tượng dùng để chứa các đối tượng khác, và các đối tượng được chứa này cũng được lưu trữ một cách liên tiếp trong vector.
@@ -1175,4 +1193,10 @@ Linked List là một cấu trúc dữ liệu động, được tạo nên nhờ
  ## Map
 
 Map trong C++ là một tập hợp các phần tử được sắp xếp theo thứ tự cụ thể, mà mỗi phần tử trong đó được hình thành bởi sự kết hợp của một cặp khóa và giá trị (key & value), với mỗi khóa là duy nhất trong map.
+</details>
+
+
+
+
+
 </details>
