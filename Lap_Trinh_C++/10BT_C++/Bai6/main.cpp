@@ -15,10 +15,10 @@ class PhanSo{
         PhanSo(int tu_so, int mau_so);
         int getTuSo();
         int getMauSo();
-        void Cong(PhanSo phanso);
-        void Tru(PhanSo phanso);
-        void Nhan(PhanSo phanso);
-        void Chia(PhanSo phanso);
+        float Cong(PhanSo phanso);
+        float Tru(PhanSo phanso);
+        float Nhan(PhanSo phanso);
+        float Chia(PhanSo phanso);
 };
 
 PhanSo::PhanSo(int tu_so, int mau_so){
@@ -34,15 +34,38 @@ int PhanSo::getMauSo(){
     return mau_So;
 }
 
-void PhanSo::Cong(PhanSo phanso){
-    
+float PhanSo::Cong(PhanSo phanso){
+    int TuSo = tu_So * phanso.getMauSo() + phanso.getTuSo()*mau_So;
+    int MaSo = mau_So * phanso.getMauSo();
+    return (float)TuSo/MaSo;
+}
+
+float PhanSo::Tru(PhanSo phanso){
+    int TuSo = tu_So * phanso.getMauSo() - phanso.getTuSo()*mau_So;
+    int MaSo = mau_So * phanso.getMauSo();
+    return (float)TuSo/MaSo;
+}
+
+float PhanSo::Nhan(PhanSo phanso){
+    int TuSo = tu_So *phanso.getTuSo();
+    int MaSo = mau_So * phanso.getMauSo();
+    return (float)TuSo/MaSo;
+}
+
+float PhanSo::Chia(PhanSo phanso){
+    int TuSo = tu_So * phanso.getMauSo() ;
+    int MaSo = mau_So * phanso.getTuSo();
+    return (float)TuSo/MaSo;
 }
 
 
 
 int main()
 {
-
-
+    PhanSo PhanSo1(7,5), PhanSo2(4,5);
+    cout << "Tong 2 phan so = " << PhanSo1.Cong(PhanSo2) << endl;
+    cout << "Hieu 2 phan so = " << PhanSo1.Tru(PhanSo2)  << endl;
+    cout << "Tich 2 phan so = " << PhanSo1.Nhan(PhanSo2) << endl;
+    cout << "Thuong 2 phan so = " << PhanSo1.Chia(PhanSo2) << endl;
     return 0;
 }
