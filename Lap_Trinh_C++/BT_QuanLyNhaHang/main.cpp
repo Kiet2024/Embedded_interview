@@ -26,20 +26,20 @@ MonAn::MonAn(string ten, double gia){
 }
 
 uint8_t MonAn::getID(){
-    return this -> ID;
+    return ID;
 }
 
 string MonAn::getTen(){
-    return this -> TEN;
+    return TEN;
 }
 
 double MonAn::getGia(){
-    return this -> GIA;
+    return GIA;
 }
 
 void MonAn::getThongTin(){
-    static uint8_t stt = 1;
-    cout << "stt:" << stt++ << endl;
+    //static uint8_t stt = 1;
+    cout << "class mon an";
     cout << "id :" << getID() << endl;
     cout << "ten mon:" << getTen() << endl;
     cout << "gia:" << getGia() << endl;
@@ -72,14 +72,17 @@ void QuanLy::themMon(){
     QuanLy();
 }
 void QuanLy::danhSachMon(){
-    cout << "   ************Danh sach mon*************" << endl;
-    cout << "   ======================================" << endl;
-    cout << "   | STT |  ID  |   TEN MON    |   GIA  |" << endl;
-    cout << "   ======================================" << endl;
-    for (MonAn item : DATABASE )
+    for (MonAn item: DATABASE)
     {
         item.getThongTin();
     }
+    // cout << "   ************Danh sach mon*************" << endl;
+    // cout << "   ======================================" << endl;
+    // cout << "   | STT |  ID  |   TEN MON    |   GIA  |" << endl;
+    // cout << "   ======================================" << endl;
+    
+    //cout << "Ten: " << item.getGia()<< endl;
+
     //QuanLy();
     
 
@@ -125,6 +128,7 @@ void QuanLy::suaMon(){
 void QuanLy::setSoBan(){
     cout << "Moi nhap so ban: ";
     cin  >> SO_BAN;
+    QuanLy();
 }
 
 list<MonAn> QuanLy::getDatabase(){
@@ -139,15 +143,15 @@ uint8_t QuanLy::getSoBan(){
 QuanLy::QuanLy(){
     int key = 0;
     do {
-        printf("-----Chuong trinh Quan ly-----\n");
-        printf("1.Them mon\n");
-        printf("2.Sua mon\n");
-        printf("3.Xoa mon\n");
-        printf("4.Danh sach mon\n");
-        printf("5.Thiet lap so ban\n");
-        printf("0.Quay lai\n");
-        printf("Moi nhap lua chon:");
-        scanf("%d", &key);
+        cout << "-----Chuong trinh Quan ly-----" << endl;
+        cout << "1.Them mon" << endl;
+        cout << "2.Sua mon" << endl;
+        cout << "3.Xoa mon" << endl;
+        cout << "4.Danh sach mon" << endl;
+        cout << "5.Thiet lap so ban" << endl;
+        cout << "0.Quay lai" << endl;
+        cout << "Moi nhap lua chon:" << endl;
+        cin >> key;
     } while (key < 0 || key > 6);
 
     switch (key)
@@ -215,6 +219,7 @@ class NhanVien{
 
 int main()
 {
+ 
     QuanLy();
 
     return 0;
