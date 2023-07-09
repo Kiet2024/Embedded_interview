@@ -11,14 +11,18 @@ class MonAn{
         double GIA;
     public:
         MonAn(string ten, double gia);
+        uint8_t STT;
         uint8_t getID();
         string getTen();
         double getGia();
-        void getThongTin();
+        void getThongTinMon();
 };
 
 MonAn::MonAn(string ten, double gia){
     static uint8_t id = 100;
+    static uint8_t stt = 1;
+    STT = stt;
+    stt++;
     ID = id;
     id++;
     TEN = ten;
@@ -37,12 +41,8 @@ double MonAn::getGia(){
     return GIA;
 }
 
-void MonAn::getThongTin(){
-    //static uint8_t stt = 1;
-    cout << "class mon an";
-    cout << "id :" << getID() << endl;
-    cout << "ten mon:" << getTen() << endl;
-    cout << "gia:" << getGia() << endl;
+void MonAn::getThongTinMon(){
+    printf( "      | %-4d| %-5d|    %-15s  |   %-10.3f|\n", STT, getID(), getTen().c_str() , getGia());
 }
 
 class QuanLy{
@@ -54,60 +54,84 @@ class QuanLy{
         void xoaMon();
         void danhSachMon();
         void setSoBan();
+        void demo();
     public:
         QuanLy();
         list<MonAn> getDatabase();
         uint8_t getSoBan();
 };
 
+
 void QuanLy::themMon(){
+    int key;
     string ten;
     double gia;
-    cout << "Nhap ten mon: " << endl;
-    cin >> ten;
-    cout << "Nhap gia: " << endl;
+    cin.ignore(); // xoa ky tu dau tien trong bo nho dem
+    cout << "Nhap ten mon: ";
+    getline(cin, ten);
+    cout << "Nhap gia: " ;
     cin >> gia;
     MonAn mon(ten, gia);
     DATABASE.push_back(mon);
-    QuanLy();
+    do {
+        cout << "   1.Tiep tuc them mon" << endl;
+        cout << "   0.Quay lai"<< endl;
+        cout << "Moi nhap lua chon: ";
+        cin  >> key;
+    } while (key < 0 || key > 1);
+    
+    switch (key) {
+    case 0:
+        QuanLy();
+        break;
+    case 1:
+        themMon();
+        break;
+    default:
+        break;
+    }
 }
 void QuanLy::danhSachMon(){
-    for (MonAn item: DATABASE)
-    {
-        item.getThongTin();
+    if (DATABASE.empty()){
+        cout << "Chua them data mon an" << endl;
     }
-    // cout << "   ************Danh sach mon*************" << endl;
-    // cout << "   ======================================" << endl;
-    // cout << "   | STT |  ID  |   TEN MON    |   GIA  |" << endl;
-    // cout << "   ======================================" << endl;
-    
-    //cout << "Ten: " << item.getGia()<< endl;
+    else {
+         cout << "                        Danh sach mon                  " << endl;
+         cout << "      ==================================================" << endl;
+         cout << "      | STT |  ID  |      TEN MON        |   GIA(VND)  |" << endl;
+         cout << "      ==================================================" << endl;
+        for (auto item: DATABASE) {
+            item.getThongTinMon();
+            cout << "      --------------------------------------------------" << endl;
 
-    //QuanLy();
-    
-
+        }
+    }
+    QuanLy(); 
 }
+
 
 void QuanLy::suaMon(){
     uint8_t id;
     string ten;
     double gia;
-    int key = 0;
-    // hien thi danh sach mon
+    int key;
 
-    cout << "Nhap ID:";
+    danhSachMon();
+    cout << "Nhap ID: ";
     cin >> id;
     do
     {
-        cout << "1.Sua ten mon" << endl;
-        cout << "2.Sua gia mon" << endl;
-        cout << "0.Quay lai"    << endl;
+        cout << "   1.Sua ten mon" << endl;
+        cout << "   2.Sua gia mon" << endl;
+        cout << "   0.Quay lai"    << endl;
+        cout << "Moi nhap lua chon: ";
+        cin  >> key;
     } while (key < 0 || key > 2);
-    
+
     switch (key)
     {
     case 0:
-        // quay ve man hinh quan ly
+        QuanLy();
         break;
     case 1:
         
@@ -119,16 +143,15 @@ void QuanLy::suaMon(){
     default:
         break;
     }
-    cout << "Nhap ten mon: " << endl;
+    cout << "Nhap ten mon: ";
     cin >> ten;
-    cout << "Nhap gia: " << endl;
+    cout << "Nhap gia: ";
     cin >> gia;
 }
-
 void QuanLy::setSoBan(){
     cout << "Moi nhap so ban: ";
     cin  >> SO_BAN;
-    QuanLy();
+    //menuQuanLy();
 }
 
 list<MonAn> QuanLy::getDatabase(){
@@ -143,21 +166,21 @@ uint8_t QuanLy::getSoBan(){
 QuanLy::QuanLy(){
     int key = 0;
     do {
-        cout << "-----Chuong trinh Quan ly-----" << endl;
-        cout << "1.Them mon" << endl;
-        cout << "2.Sua mon" << endl;
-        cout << "3.Xoa mon" << endl;
-        cout << "4.Danh sach mon" << endl;
-        cout << "5.Thiet lap so ban" << endl;
-        cout << "0.Quay lai" << endl;
-        cout << "Moi nhap lua chon:" << endl;
+        cout << "------Chuong trinh Quan ly------" << endl;
+        cout << "   1.Them mon" << endl;
+        cout << "   2.Sua mon" << endl;
+        cout << "   3.Xoa mon" << endl;
+        cout << "   4.Danh sach mon" << endl;
+        cout << "   5.Thiet lap so ban" << endl;
+        cout << "   0.Quay lai" << endl;
+        cout << "Moi nhap lua chon: ";
         cin >> key;
     } while (key < 0 || key > 6);
 
     switch (key)
     {
     case 0:
-        // Quay lai Menu
+        //Quay lai Menu chinh
         break;
     case 1:
         themMon();
@@ -214,13 +237,23 @@ class NhanVien{
 
 };
 
-
-
-
 int main()
 {
- 
-    QuanLy();
-
+    int key;
+    cout << "------GIAO DIEN QUAN LY ORDER-------" << endl;
+    cout << "   1.Quan ly" << endl;
+    cout << "   2.Nhan vien" << endl;
+    cout << "Moi nhap lua chon: ";
+    cin  >> key;
+    switch (key)
+    {
+    case 1:
+        QuanLy();
+        break;
+    case 2:
+        //NhanVien();
+    default:
+        break;
+    }
     return 0;
 }
