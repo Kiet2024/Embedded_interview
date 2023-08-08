@@ -1195,6 +1195,19 @@ Linked List là một cấu trúc dữ liệu động, được tạo nên nhờ
 Map trong C++ là một tập hợp các phần tử được sắp xếp theo thứ tự cụ thể, mà mỗi phần tử trong đó được hình thành bởi sự kết hợp của một cặp khóa và giá trị (key & value), với mỗi khóa là duy nhất trong map.
 </details>
 
+</details>
+
+<details>
+	 <summary><H1> 📖Tổng quát về Embedded </H1></summary>
+
+<details>
+	
+<summary> <H3> 🏷️GIAO THỨC SPI </H3> </summary>
+
+![image](https://github.com/Kiet2024/Embedded_interview/assets/133784431/5902d7f9-7ff6-47d7-959d-76b81ed97726)
+
+</details>
+
 
 
 
