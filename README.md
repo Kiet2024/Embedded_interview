@@ -1206,9 +1206,46 @@ Map trong C++ là một tập hợp các phần tử được sắp xếp theo t
 
 ![image](https://github.com/Kiet2024/Embedded_interview/assets/133784431/5902d7f9-7ff6-47d7-959d-76b81ed97726)
 
+SPI (Serial Peripheral Interface) là một chuẩn truyền thông nối tiếp tốc độ cao do Motorola đề xuất.
+- Các bit dữ liệu được truyền nối tiếp nhau và có xung clock đồng bộ.
+- `Giao tiếp song công, có thể truyền và nhận cùng một thời điểm`.
+- `Khoảng cách truyền ngắn`, được sử dụng `để trao đổi dữ liệu với nhau giữa các chip trên cùng một bo mạch`.
+- Tốc độ truyền khoảng vài Mb/s.
+- Các dòng vi điều khiển thường được tích hợp module giao tiếp SPI dùng để giao tiếp truyền dữ liệu với các vi điều khiển khác, hoặc giao tiếp với các ngoại vi bên ngoài như cảm biến, EEPROM, ADC, LCD, SD Card,…
+- `Master` `giao tiếp` với `bao nhiêu Slave` thì có `bấy nhiêu chân SS(hay gọi là CS)` vì `Master` muốn `giao tiếp` với `Slave` nào thì `thông qua chân SS`(hay gọi là CS) và chân SS kết nối với Salve `phải ở mức 0`.
+-  Nếu `1 Master muốn ngắt giao tiếp với Salve hiện tại` để giao tiếp với Slave khác thì `chân SS` của Master kết nối với chân SS của Slave hiện tại phải được kéo `lên mức 1`.
+- `Tại một thời điểm bất kỳ thì Master chỉ giao tiếp được với 1 Slave`. 
+
+### Giao tiếp với 1 Master với 1 slave
+Bus SPI gồm có 4 đường tín hiệu:
+- SCLK: Serial Clock
+- MOSI: Master Out, Slave In
+- MISO: Master In, Slave Out
+- SS: Slave Select
+### Cách truyền và nhận dữ liệu
+<img width="500" alt="image" src="https://github.com/Kiet2024/Embedded_interview/assets/133784431/104f70fd-e407-49bc-a3da-887746b27c1f">
+
+- `Mỗi chip Master hay Slave` sẽ `có một thanh ghi dữ liệu 8 bit` chứa dữ liệu cần gửi đi hoặc dữ liệu nhận về.
+- Cứ `mỗi xung nhịp do Master tạo ra trên chân SCLK`, `một bit trong thanh ghi dữ liệu của Master được truyền qua Slave trên đường MOSI`, đồng thời một bit trong thanh ghi dữ liệu của Slave cũng được truyền qua cho Master trên đường MISO.(Master có thể vừa truyền nhận dữ liệu đồng thời).
+### Các chế độ hoạt động
+<img width="200" alt="image" src="https://github.com/Kiet2024/Embedded_interview/assets/133784431/c89f70d0-69b4-4cd8-b46d-80cec1b56b2d">
+
+<img width="471" alt="image" src="https://github.com/Kiet2024/Embedded_interview/assets/133784431/dd23e9b2-f954-4aa6-8c9a-033c9e945a5f">
+
+- CPOL là hình dạng xung clock:
+   + `CPOL = 0` thì hình dạng xung clock `khi không có truyền data` thì trạng thấy ban đầu nó `ở mức 0`.
+   + `CPOL = 1` thì hình dạng xung clock `khi không có truyền data` thì trạng thấy ban đầu nó `ở mức 1`.
+- CHPA là cách truyền data:
+   + `CHPA = 0` đưa `data vào chân MISO trước` sau đó dùng xung clock để đẩy data đi.
+   + `CHPA = 1` thì `đầu tiên cần cho 1 xung clock trước` sau đó mới đưa data vào chân MISO và xung clock tiếp theo nó sẽ đẩy data trước đó đi.
+
 </details>
 
+<details>
+	<summary> <H3> 🏷️GIAO THỨC I2C </H3> </summary>
 
+ 
+</details>
 
 
 
