@@ -4,6 +4,7 @@
 	<summary> <H3> 🏷️Thuật toàn sắp xếp nổi bọt( bubble sort) </H3> </summary>
 </details>
 
+![image](https://github.com/Kiet2024/Embedded_interview/assets/133784431/60a41292-216c-434b-8589-270b987da37b)
 
 
 
