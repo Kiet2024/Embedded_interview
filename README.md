@@ -1,4 +1,20 @@
 <details>
+ <summary><H1> 📖Thuật toán </H1></summary>
+<details>
+	<summary> <H3> 🏷️Thuật toàn sắp xếp nổi bọt( bubble sort) </H3> </summary>
+</details>
+
+
+
+
+</details>
+
+
+
+
+
+
+<details>
 
  <summary><H1> 📖Tổng quát về C </H1></summary>
 
@@ -606,7 +622,6 @@ int main()
 }
  ```
 </details>
-
 
 
 </details>
