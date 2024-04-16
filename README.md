@@ -37,6 +37,8 @@ Quá trình `tiền xử lý (Preprocessor)` xảy ra nó sẽ thay thế nhữn
 Quá trình `linker` sẽ sắp xếp các object files + libraries vào file *.exe .
 
 Bản chất file *.exe giống như file zip hay rar.
+
+https://www.youtube.com/watch?v=x95QaT4t5xQ
     
 </details>
 
