@@ -287,15 +287,90 @@ typedef uint8_t u8;
 u8 x = 10; // u8 bản chất nó là kiểu uint8_t
  ```
 Enum (Enumeration) là kiểu dữ liệu cố định, chỉ cho phép biến nhận số số giá trị nhất định nào đó.
-Các giá trị enum có thể coi là một hằng số. Việc sử dụng enum giúp đảm bảo giá trị các biến chỉ nhận các giá trị mong đợi
+Các giá trị enum có thể coi là một hằng số. 
 ```
 enum Tên_enum {
-    Giá_trị_1,
-    Giá_trị_2,
-    Giá_trị_3,
+    Giá_trị_1, // mặc định 0
+    Giá_trị_2, // 1
+    Giá_trị_3, // 2
     // ...
 };
+
+Ex:
+#include <stdio.h>
+
+// Định nghĩa kiểu enum để mô tả các ngày trong tuần
+enum Day {
+    Sunday,    // Mặc định là 0
+    Monday,    // 1
+    Tuesday,   // 2
+    Wednesday, // 3
+    Thursday,  // 4
+    Friday,    // 5
+    Saturday   // 6
+};
+
+int main() {
+    // Tạo biến kiểu enum Day
+    enum Day today;
+    
+    // Gán giá trị cho biến today
+    today = Wednesday;
+
+    // In ra giá trị của today
+    printf("Hom nay la thu: %d\n", today); // Kết quả: 3
+
+    if (today == Wednesday) {
+        printf("Giua tuan roi!\n");
+    }
+
+    return 0;
+}
 ```
+
+## Lưu ý: 
+
+Enum chỉ lưu trữ các giá trị nguyên (integer), không thể sử dụng các kiểu dữ liệu khác như float hoặc string.
+
+Mặc định, các giá trị trong enum sẽ bắt đầu từ 0 và tăng dần. Tuy nhiên, có thể gán giá trị cụ thể cho mỗi phần tử.
+
+
+Typedef enum  để định nghĩa một kiểu dữ liệu mới dựa trên kiểu enum, và giúp tránh việc phải sử dụng từ khóa enum mỗi khi khai báo biến thuộc kiểu đó. 
+Typedef giúp đặt tên ngắn gọn cho kiểu enum, làm cho mã nguồn ngắn gọn hơn và dễ đọc hơn.
+```
+typedef enum {
+    Giá_trị_1,
+    Giá_trị_2,
+    Giá_trị_3
+} Tên_mới;
+
+EX:
+#include <stdio.h>
+
+// Định nghĩa một kiểu enum mới với typedef
+typedef enum {
+    RED,
+    GREEN,
+    BLUE
+} Color;
+
+int main() {
+    // Khai báo biến thuộc kiểu Color (không cần dùng enum)
+    Color favoriteColor;
+
+    // Gán giá trị cho biến
+    favoriteColor = GREEN;
+
+    // In ra giá trị của biến
+    if (favoriteColor == GREEN) {
+        printf("Mau yeu thich la mau xanh la.\n");
+    }
+
+    return 0;
+}
+
+```
+
 </details>
     
     
