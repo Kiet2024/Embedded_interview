@@ -279,13 +279,23 @@ printf("%s",(((bit & (1<<2)) !=0)?"true":"false"));
  
 <details>
 
-<summary> <H3> 🏷️TYPDEFT </H3> </summary>
+<summary> <H3> 🏷️TYPDEFT - ENUM </H3> </summary>
     
 Typedef được sử dụng để tạo tên mới cho kiểu dữ liệu. 
 ```
 typedef uint8_t u8;
 u8 x = 10; // u8 bản chất nó là kiểu uint8_t
  ```
+Enum (Enumeration) là kiểu dữ liệu cố định, chỉ cho phép biến nhận số số giá trị nhất định nào đó.
+Các giá trị enum có thể coi là một hằng số. Việc sử dụng enum giúp đảm bảo giá trị các biến chỉ nhận các giá trị mong đợi
+```
+enum Tên_enum {
+    Giá_trị_1,
+    Giá_trị_2,
+    Giá_trị_3,
+    // ...
+};
+```
 </details>
     
     
